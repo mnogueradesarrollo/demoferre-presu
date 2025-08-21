@@ -224,8 +224,7 @@ table.items input{
   .sheet {
     padding:24px 32px;       /* aire interior */
   }
-  .topbar,
-  .footer {
+  .topbar {
     display:none;
   }
 }
