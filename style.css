@@ -1,0 +1,77 @@
+:root{ 
+  --accent:#2263ff; --ink:#23252b; --muted:#6b6f76; --paper:#fff; --line:#e6e8f0;
+}
+*{box-sizing:border-box}
+body{margin:0; font-family:system-ui,Segoe UI,Roboto,Arial; color:var(--ink); background:#f4f6fb}
+.wrap{max-width:980px; margin:28px auto; padding:0 16px 80px}
+.topbar{display:flex; justify-content:space-between; align-items:center; margin-bottom:16px}
+.actions{display:flex; gap:8px; flex-wrap:wrap}
+button{border:1px solid var(--line); background:var(--paper); padding:10px 14px; border-radius:10px; font-weight:600; cursor:pointer}
+button.primary{background:var(--accent); color:#fff; border-color:transparent}
+button.ghost{background:var(--paper)}
+.card{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:16px;
+  box-shadow:0 10px 30px rgba(34,99,255,.07);
+}
+.sheet{padding:24px}
+.brandline{display:grid; grid-template-columns:1fr auto; border-bottom:1px solid var(--line); padding-bottom:18px; margin-bottom:18px}
+.brand h1{margin:0; font-size:26px}
+.brand small{color:var(--muted)}
+.badge{text-align:right}
+.badge .num{font-family:monospace; font-size:20px; font-weight:700}
+.mini{font-size:12px; color:var(--muted)}
+.pill{border:1px solid var(--line); border-radius:999px; padding:2px 8px; font-size:12px}
+.meta{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+.meta .box{border:1px dashed var(--line); padding:12px; border-radius:12px; background:#fafbff}
+.meta input,.meta textarea{width:100%; border:1px solid #dfe3f8; border-radius:10px; padding:10px 12px; background:#fff}
+table.items{width:100%; border-collapse:collapse; margin-top:18px}
+table.items thead th{font-size:12px; color:var(--muted); border-bottom:1px solid var(--line); padding:8px; text-align:left}
+table.items tbody td{border-bottom:1px dashed #eceef8; padding:8px}
+table.items input{width:100%; border:1px solid transparent; padding:6px; border-radius:8px}
+.col-qty{width:80px} .col-unit{width:120px} .col-price{width:120px} .col-sub{width:150px;text-align:right} .col-act{width:40px}
+.subtotal{text-align:right}
+.totals{display:flex; justify-content:flex-end; margin-top:16px; gap:20px; align-items:flex-end}
+.totals .grand{font-size:28px; font-weight:700}
+.footer{display:flex; justify-content:space-between; padding:12px 20px; background:#fbfcff; border-top:1px solid var(--line)}
+
+@media print{ 
+  .topbar,.footer{display:none} 
+  body{background:#fff} 
+  .wrap{margin:0;padding:0} 
+  .card{
+    border:1px solid #000;   /* 👈 Borde negro al imprimir */
+    border-radius:15px;         /* Opcional: sin bordes redondeados */
+    box-shadow:none
+  }
+  .sheet{padding:24px}       /* Mantén un poco de aire interno */
+}
+
+@page {
+  margin: 0; /* 👈 Elimina márgenes del navegador en PDF */
+}
+
+@media print {
+  body {
+    background:#fff;
+  }
+  .wrap {
+    margin:0;
+    padding:0;
+  }
+  .card {
+    border:1px solid #000;   /* borde negro visible */
+    border-radius:10px;         /* opcional: esquinas rectas */
+    box-shadow:none;
+    width:100%;              /* ocupa todo el ancho de la hoja */
+    min-height:100vh;        /* asegura altura completa de la página */
+  }
+  .sheet {
+    padding:24px 32px;       /* aire interior */
+  }
+  .topbar,
+  .footer {
+    display:none;
+  }
+}
