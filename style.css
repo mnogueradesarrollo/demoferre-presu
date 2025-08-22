@@ -341,3 +341,12 @@ table.items input {
     padding: 8px 12px;
   }
 }
+
+/* Responsive: centrar logo en móviles */
+@media (max-width: 768px) {
+  .brand-mini {
+    justify-content: center; /* centra horizontalmente */
+    width: 100%; /* ocupa todo el ancho */
+    margin-bottom: 12px; /* agrega aire debajo */
+  }
+}
