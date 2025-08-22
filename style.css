@@ -16,6 +16,24 @@ body {
   background: #f4f6fb;
 }
 
+.brand-mini {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-mini img {
+  height: 40px; /* ajusta el tamaño del logo */
+  max-width: 120px;
+  object-fit: contain;
+}
+
+#biz-logo-fallback {
+  font-weight: bold;
+  font-size: 18px;
+  color: var(--ink);
+}
+
 .wrap {
   max-width: 980px;
   margin: 28px auto;
