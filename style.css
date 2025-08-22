@@ -1,205 +1,222 @@
-:root{ 
-  --accent:#2263ff; --ink:#23252b; --muted:#6b6f76; --paper:#fff; --line:#e6e8f0;
+:root {
+  --accent: #2263ff;
+  --ink: #23252b;
+  --muted: #6b6f76;
+  --paper: #fff;
+  --line: #e6e8f0;
 }
-*{
-  box-sizing:border-box
-}
-
-body{
-  margin:0; 
-  font-family:system-ui,Segoe UI,Roboto,Arial; 
-  color:var(--ink); 
-  background:#f4f6fb
+* {
+  box-sizing: border-box;
 }
 
-.wrap{
-  max-width:980px; 
-  margin:28px auto; 
-  padding:0 16px 80px
+body {
+  margin: 0;
+  font-family: system-ui, Segoe UI, Roboto, Arial;
+  color: var(--ink);
+  background: #f4f6fb;
 }
 
-.topbar{
-  display:flex; 
-  justify-content:space-between; 
-  align-items:center; 
-  margin-bottom:16px
+.wrap {
+  max-width: 980px;
+  margin: 28px auto;
+  padding: 0 16px 80px;
 }
 
-.actions{
-  display:flex; 
-  gap:8px; 
-  flex-wrap:wrap
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
 }
 
-button{
-  border:1px solid var(--line); 
-  background:var(--paper); 
-  padding:10px 14px; 
-  border-radius:10px; 
-  font-weight:600; 
-  cursor:pointer
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
-button.primary{
-  background:var(--accent); 
-  color:#fff; 
-  border-color:transparent
+button {
+  border: 1px solid var(--line);
+  background: var(--paper);
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-button.ghost{
-  background:var(--paper)
+button.primary {
+  background: var(--accent);
+  color: #fff;
+  border-color: transparent;
 }
 
-.card{
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:16px;
-  box-shadow:0 10px 30px rgba(34,99,255,.07);
+button.ghost {
+  background: var(--paper);
 }
 
-.sheet{
-  padding:24px
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(34, 99, 255, 0.07);
 }
 
-.brandline{display:grid; 
-  grid-template-columns:1fr auto; 
-  border-bottom:1px solid var(--line); 
-  padding-bottom:18px; margin-bottom:18px
+.sheet {
+  padding: 24px;
 }
 
-.brand h1{
-  margin:0; 
-  font-size:26px
+.brandline {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 18px;
+  margin-bottom: 18px;
 }
 
-.brand small{
-  color:var(--muted)
+.brand h1 {
+  margin: 0;
+  font-size: 26px;
 }
 
-.badge{
-  text-align:right
+.brand small {
+  color: var(--muted);
 }
 
-.badge .num{
-  font-family:monospace; 
-  font-size:20px; 
-  font-weight:700
+.badge {
+  text-align: right;
 }
 
-.mini{
-  font-size:12px; 
-  color:var(--muted)
+.badge .num {
+  font-family: monospace;
+  font-size: 20px;
+  font-weight: 700;
 }
 
-.pill{
-  border:1px solid var(--line); 
-  border-radius:999px; 
-  padding:2px 8px; 
-  font-size:12px
+.mini {
+  font-size: 12px;
+  color: var(--muted);
 }
 
-.meta{
-  display:grid; 
-  grid-template-columns:1fr 1fr; 
-  gap:16px
+.pill {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 12px;
 }
 
-.meta .box{
-  border:1px dashed var(--line); 
-  padding:12px; 
-  border-radius:12px; 
-  background:#fafbff
+.meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
 }
 
-.meta input,.meta textarea{
-  width:100%;
-  border:1px solid #dfe3f8; 
-  border-radius:10px; 
-  padding:10px 12px; 
-  background:#fff
+.meta .box {
+  border: 1px dashed var(--line);
+  padding: 12px;
+  border-radius: 12px;
+  background: #fafbff;
 }
 
-table.items{
-  width:100%; 
-  border-collapse:collapse; 
-  margin-top:18px
+.meta input,
+.meta textarea {
+  width: 100%;
+  border: 1px solid #dfe3f8;
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: #fff;
 }
 
-table.items thead th{
-  font-size:12px; 
-  color:var(--muted); 
-  border-bottom:1px solid var(--line); 
-  padding:8px; 
-  text-align:left
+table.items {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 18px;
 }
 
-table.items tbody td{
-  border-bottom:1px dashed #eceef8;
-  padding:8px
+table.items thead th {
+  font-size: 12px;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line);
+  padding: 8px;
+  text-align: left;
 }
 
-table.items input{
-  width:100%; 
-  border:1px solid transparent; 
-  padding:6px; 
-  border-radius:8px
+table.items tbody td {
+  border-bottom: 1px dashed #eceef8;
+  padding: 8px;
 }
 
-.col-qty{
-  width:80px
-} 
-
-.col-unit{
-  width:120px
-} 
-
-.col-price{
-  width:120px
-} 
-
-.col-sub{
-  width:150px;text-align:right
-} 
-
-.col-act{
-  width:40px
+table.items input {
+  width: 100%;
+  border: 1px solid transparent;
+  padding: 6px;
+  border-radius: 8px;
 }
 
-.subtotal{
-  text-align:right
+.col-qty {
+  width: 80px;
 }
 
-.totals{
-  display:flex; 
-  justify-content:flex-end; 
-  margin-top:16px; 
-  gap:20px; 
-  align-items:flex-end
+.col-unit {
+  width: 120px;
 }
 
-.totals .grand{
-  -size:28px; 
-  font-weight:700
+.col-price {
+  width: 120px;
 }
 
-.footer{
-  display:flex; 
-  justify-content:space-between; 
-  padding:12px 20px; 
-  background:#fbfcff; 
-  border-top:1px solid var(--line)
+.col-sub {
+  width: 150px;
+  text-align: right;
 }
 
-@media print{ 
-  .topbar{display:none} 
-  body{background:#fff} 
-  .wrap{margin:0;padding:0} 
-  .card{
-    border:1px solid #000;   /* 👈 Borde negro al imprimir */
-    border-radius:15px;         /* Opcional: sin bordes redondeados */
-    box-shadow:none
+.col-act {
+  width: 40px;
+}
+
+.subtotal {
+  text-align: right;
+}
+
+.totals {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+  gap: 20px;
+  align-items: flex-end;
+}
+
+.totals .grand {
+  -size: 28px;
+  font-weight: 700;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: #fbfcff;
+  border-top: 1px solid var(--line);
+}
+
+@media print {
+  .topbar {
+    display: none;
   }
-  .sheet{padding:24px}       /* Mantén un poco de aire interno */
+  body {
+    background: #fff;
+  }
+  .wrap {
+    margin: 0;
+    padding: 0;
+  }
+  .card {
+    border: 1px solid #000; /* 👈 Borde negro al imprimir */
+    border-radius: 15px; /* Opcional: sin bordes redondeados */
+    box-shadow: none;
+  }
+  .sheet {
+    padding: 24px;
+  } /* Mantén un poco de aire interno */
 }
 
 @page {
@@ -208,23 +225,85 @@ table.items input{
 
 @media print {
   body {
-    background:#fff;
+    background: #fff;
   }
   .wrap {
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
   }
   .card {
-    border:1px solid #000;   /* borde negro visible */
-    border-radius:10px;         /* opcional: esquinas rectas */
-    box-shadow:none;
-    width:100%;              /* ocupa todo el ancho de la hoja */
-    min-height:100vh;        /* asegura altura completa de la página */
+    border: 1px solid #000; /* borde negro visible */
+    border-radius: 10px; /* opcional: esquinas rectas */
+    box-shadow: none;
+    width: 100%; /* ocupa todo el ancho de la hoja */
+    min-height: 100vh; /* asegura altura completa de la página */
   }
   .sheet {
-    padding:24px 32px;       /* aire interior */
+    padding: 24px 32px; /* aire interior */
   }
   .topbar {
-    display:none;
+    display: none;
+  }
+}
+
+/* ----------- Responsividad ----------- */
+@media (max-width: 768px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .actions {
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .actions button {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .meta {
+    grid-template-columns: 1fr; /* de 2 columnas pasa a 1 */
+  }
+
+  table.items {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .totals {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  .brand h1 {
+    font-size: 20px;
+  }
+
+  .badge .num {
+    font-size: 16px;
+  }
+
+  .actions button {
+    font-size: 14px;
+    padding: 8px 12px;
   }
 }

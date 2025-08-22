@@ -1,123 +1,139 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Presupuesto</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="wrap">
-    <header class="topbar">
-      <div class="brand-mini">
-        <strong>Presupuesto</strong>
-      </div>
-      <div class="actions">
-        <button class="ghost" id="btn-new">Nuevo</button>
-        <button class="ghost" id="btn-add-row">Agregar fila</button>
-        <button id="btn-print" class="primary">Imprimir</button>
-        <button id="btn-pdf" class="primary">Guardar PDF</button>
-        <button id="btn-settings" class="ghost">Datos del comercio</button>
-      </div>
-    </header>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Presupuesto</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="topbar">
+        <div class="brand-mini">
+          <strong>Presupuesto</strong>
+        </div>
+        <div class="actions">
+          <button class="ghost" id="btn-new">Nuevo</button>
+          <button class="ghost" id="btn-add-row">Agregar fila</button>
+          <button id="btn-print" class="primary">Imprimir</button>
+          <button id="btn-pdf" class="primary">Guardar PDF</button>
+          <button id="btn-settings" class="ghost">Datos del comercio</button>
+        </div>
+      </header>
 
-    <section class="card" id="sheet-card">
-      <div class="sheet">
-        <div class="brandline">
-          <div class="brand">
-            <h1 id="biz-name">Tu Comercio</h1>
-            <small id="biz-sub">Rubro o lema (opcional)</small><br>
-            <small id="biz-contact">Dirección · Teléfono · Email</small>
+      <section class="card" id="sheet-card">
+        <div class="sheet">
+          <div class="brandline">
+            <div class="brand">
+              <h1 id="biz-name">Tu Comercio</h1>
+              <small id="biz-sub">Rubro o lema (opcional)</small><br />
+              <small id="biz-contact">Dirección · Teléfono · Email</small>
+            </div>
+            <div class="badge">
+              <div class="doc">
+                PRESUPUESTO <span class="pill">No válido como factura</span>
+              </div>
+              <div class="num">Nº <span id="seq"></span></div>
+              <div class="mini">Fecha: <span id="today"></span></div>
+            </div>
           </div>
-          <div class="badge">
-            <div class="doc">PRESUPUESTO <span class="pill">No válido como factura</span></div>
-            <div class="num">Nº <span id="seq"></span></div>
-            <div class="mini">Fecha: <span id="today"></span></div>
+
+          <div class="meta">
+            <div class="box">
+              <label>Señor/a</label>
+              <input id="client" placeholder="Nombre del cliente" />
+              <label style="margin-top: 8px">Domicilio</label>
+              <input id="address" placeholder="Dirección (opcional)" />
+            </div>
+            <div class="box">
+              <label>Observaciones (opcional)</label>
+              <textarea
+                id="notes"
+                placeholder="Condiciones, plazos, medios de pago, etc."
+              ></textarea>
+            </div>
+          </div>
+
+          <table class="items" id="items">
+            <thead>
+              <tr>
+                <th class="col-qty">Cantidad</th>
+                <th class="col-unit">Unidad</th>
+                <th>Descripción</th>
+                <th class="col-price">Precio unidad</th>
+                <th class="col-sub" style="text-align: right">
+                  Total producto
+                </th>
+                <th class="col-act"></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+
+          <div class="totals">
+            <div class="label">TOTAL</div>
+            <div class="grand" id="grand">$ 0,00</div>
+          </div>
+
+          <div class="notes">
+            <span id="biz-footer"
+              >Gracias por su consulta. Precios sujetos a modificación sin
+              previo aviso.</span
+            >
           </div>
         </div>
+        <div class="footer">
+          <span class="mini">Desarrollado por <strong>Sontech</strong></span>
+          <span class="mini" id="biz-seq-footer"></span>
+          <span class="mini">Impresión amigable / PDF</span>
+        </div>
+      </section>
+    </div>
 
+    <!-- Modal de datos del comercio -->
+    <dialog id="settings">
+      <form method="dialog" class="dialog">
+        <h3>Datos del comercio</h3>
+        <p class="muted">
+          Estos datos quedan guardados en tu navegador (LocalStorage).
+        </p>
         <div class="meta">
           <div class="box">
-            <label>Señor/a</label>
-            <input id="client" placeholder="Nombre del cliente" />
-            <label style="margin-top:8px">Domicilio</label>
-            <input id="address" placeholder="Dirección (opcional)" />
+            <label>Nombre del comercio</label>
+            <input id="s-name" />
+            <label style="margin-top: 8px">Rubro / Lema (opcional)</label>
+            <input id="s-sub" />
+            <label style="margin-top: 8px"
+              >Contacto (dirección, teléfono, email)</label
+            >
+            <textarea id="s-contact"></textarea>
           </div>
           <div class="box">
-            <label>Observaciones (opcional)</label>
-            <textarea id="notes" placeholder="Condiciones, plazos, medios de pago, etc."></textarea>
-          </div>
-        </div>
-
-        <table class="items" id="items">
-          <thead>
-            <tr>
-              <th class="col-qty">Cantidad</th>
-              <th class="col-unit">Unidad</th>
-              <th>Descripción</th>
-              <th class="col-price">Precio unidad</th>
-              <th class="col-sub" style="text-align:right">Total producto</th>
-              <th class="col-act"></th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-
-        <div class="totals">
-          <div class="label">TOTAL</div>
-          <div class="grand" id="grand">$ 0,00</div>
-        </div>
-
-        <div class="notes">
-          <span id="biz-footer">Gracias por su consulta. Precios sujetos a modificación sin previo aviso.</span>
-        </div>
-      </div>
-      <div class="footer">
-        <span class="mini">Desarrollado por <strong>Sontech</strong></span>
-        <span class="mini" id="biz-seq-footer"></span>
-        <span class="mini">Impresión amigable / PDF</span>
-      </div>
-    </section>
-  </div>
-
-  <!-- Modal de datos del comercio -->
-  <dialog id="settings">
-    <form method="dialog" class="dialog">
-      <h3>Datos del comercio</h3>
-      <p class="muted">Estos datos quedan guardados en tu navegador (LocalStorage).</p>
-      <div class="meta">
-        <div class="box">
-          <label>Nombre del comercio</label>
-          <input id="s-name" />
-          <label style="margin-top:8px">Rubro / Lema (opcional)</label>
-          <input id="s-sub" />
-          <label style="margin-top:8px">Contacto (dirección, teléfono, email)</label>
-          <textarea id="s-contact"></textarea>
-        </div>
-        <div class="box">
-          <label>Pie de página</label>
-          <textarea id="s-footer"></textarea>
-          <div class="two">
-            <div>
-              <label>Prefijo</label>
-              <input id="s-prefix" placeholder="Ej: 0000">
-            </div>
-            <div>
-              <label>Próximo número</label>
-              <input id="s-next" type="number" min="1">
+            <label>Pie de página</label>
+            <textarea id="s-footer"></textarea>
+            <div class="two">
+              <div>
+                <label>Prefijo</label>
+                <input id="s-prefix" placeholder="Ej: 0000" />
+              </div>
+              <div>
+                <label>Próximo número</label>
+                <input id="s-next" type="number" min="1" />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="actions end">
-        <button class="ghost" value="cancel">Cancelar</button>
-        <button class="primary" id="save-settings" value="default">Guardar</button>
-      </div>
-    </form>
-  </dialog>
+        <div class="actions end">
+          <button class="ghost" value="cancel">Cancelar</button>
+          <button class="primary" id="save-settings" value="default">
+            Guardar
+          </button>
+        </div>
+      </form>
+    </dialog>
 
-  <script src="script.js"></script>
-  <!-- Librería para exportar PDF -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-</body>
+    <script src="script.js"></script>
+    <!-- Librería para exportar PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  </body>
 </html>
