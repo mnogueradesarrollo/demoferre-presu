@@ -5,7 +5,7 @@
   // === CONFIGURACIÓN GOOGLE SHEETS ===
   const SHEET_ID = "1j3v5WZ1lEHZ6PtadUUvc-eb7_6EemSjwhuiATrSd_nM";
   const API_KEY = "AIzaSyCt7Ayiwka5zGm45FCtk9F3Xt1DtZYjrg8";
-  const RANGE = "Hoja1!B1"; // 👈 en esa celda debe estar el último número
+  const RANGE = "'Hoja 1'!B1"; // 👈 en esa celda debe estar el último número
 
   // === FUNCIONES GOOGLE SHEETS ===
   async function getLastNumber() {
