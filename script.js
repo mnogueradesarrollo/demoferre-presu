@@ -49,10 +49,10 @@
 
   function addRow(d = { qty: "", unit: "", desc: "", price: "" }) {
     const tr = document.createElement("tr");
-    tr.innerHTML = `<td><input type="number" value="\${d.qty}"></td>
-      <td><input type="text" value="\${d.unit}"></td>
-      <td><input type="text" value="\${d.desc}"></td>
-      <td><input type="number" value="\${d.price}"></td>
+    tr.innerHTML = `<td><input type="number" value="${d.qty}"></td>
+      <td><input type="text" value="${d.unit}"></td>
+      <td><input type="text" value="${d.desc}"></td>
+      <td><input type="number" value="${d.price}"></td>
       <td class="subtotal">—</td>
       <td><button>✕</button></td>`;
     tbody.appendChild(tr);
