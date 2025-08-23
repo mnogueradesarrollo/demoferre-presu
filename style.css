@@ -5,15 +5,27 @@
   --paper: #fff;
   --line: #e6e8f0;
 }
+
 * {
   box-sizing: border-box;
 }
 
+html,
 body {
+  overflow-x: hidden;
+  max-width: 100vw;
   margin: 0;
   font-family: system-ui, Segoe UI, Roboto, Arial;
   color: var(--ink);
   background: #f4f6fb;
+}
+
+.wrap,
+.card,
+.sheet {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .wrap {
@@ -186,7 +198,7 @@ table.items input {
 }
 
 .totals .grand {
-  -size: 28px;
+  font-size: 28px;
   font-weight: 700;
 }
 
@@ -210,38 +222,85 @@ table.items input {
     padding: 0;
   }
   .card {
-    border: 1px solid #000; /* 👈 Borde negro al imprimir */
-    border-radius: 15px; /* Opcional: sin bordes redondeados */
+    border: 1px solid #000;
+    border-radius: 15px;
     box-shadow: none;
   }
   .sheet {
     padding: 24px;
-  } /* Mantén un poco de aire interno */
+  }
 }
 
 @page {
-  margin: 0; /* 👈 Elimina márgenes del navegador en PDF */
+  margin: 0;
 }
 
 @media print {
-  body {
-    background: #fff;
-  }
-  .wrap {
-    margin: 0;
-    padding: 0;
-  }
   .card {
-    border: 1px solid #000; /* borde negro visible */
-    border-radius: 10px; /* opcional: esquinas rectas */
-    box-shadow: none;
-    width: 100%; /* ocupa todo el ancho de la hoja */
-    min-height: 100vh; /* asegura altura completa de la página */
+    width: 100%;
+    min-height: 100vh;
   }
   .sheet {
-    padding: 24px 32px; /* aire interior */
+    padding: 24px 32px;
   }
+}
+
+/* ----------- Responsividad ----------- */
+@media (max-width: 768px) {
   .topbar {
-    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .actions {
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+  }
+
+  .meta {
+    grid-template-columns: 1fr;
+  }
+
+  table.items {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table.items thead,
+  table.items tbody,
+  table.items tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  .brand h1 {
+    font-size: 20px;
+  }
+
+  .badge .num {
+    font-size: 16px;
+  }
+
+  .actions button {
+    font-size: 14px;
+    padding: 8px 12px;
   }
 }
