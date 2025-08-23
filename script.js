@@ -2,32 +2,6 @@
   const $ = (s) => document.querySelector(s);
   const $$ = (s) => Array.from(document.querySelectorAll(s));
 
-  // === CONFIGURACIÓN GOOGLE SHEETS ===
-  const SHEET_ID = "1j3v5WZ1lEHZ6PtadUUvc-eb7_6EemSjwhuiATrSd_nM";
-  const API_KEY = "AIzaSyCt7Ayiwka5zGm45FCtk9F3Xt1DtZYjrg8";
-  const RANGE = "'Hoja 1'!B1";
-
-  // === FUNCIONES GOOGLE SHEETS ===
-  async function getLastNumber() {
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE}?key=${API_KEY}`;
-    const res = await fetch(url);
-    const data = await res.json();
-    return parseInt(data.values[0][0]);
-  }
-
-  async function updateNumber(newValue) {
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE}?valueInputOption=RAW&key=${API_KEY}`;
-    await fetch(url, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        range: RANGE,
-        values: [[newValue]],
-      }),
-    });
-  }
-
-  // === DATOS DEL COMERCIO (siguen en LocalStorage) ===
   const LS = {
     get(k, d) {
       try {
@@ -75,10 +49,10 @@
 
   function addRow(d = { qty: "", unit: "", desc: "", price: "" }) {
     const tr = document.createElement("tr");
-    tr.innerHTML = `<td><input type="number" value="${d.qty}"></td>
-      <td><input type="text" value="${d.unit}"></td>
-      <td><input type="text" value="${d.desc}"></td>
-      <td><input type="number" value="${d.price}"></td>
+    tr.innerHTML = `<td><input type="number" value="\${d.qty}"></td>
+      <td><input type="text" value="\${d.unit}"></td>
+      <td><input type="text" value="\${d.desc}"></td>
+      <td><input type="number" value="\${d.price}"></td>
       <td class="subtotal">—</td>
       <td><button>✕</button></td>`;
     tbody.appendChild(tr);
@@ -110,26 +84,18 @@
     $("#grand").textContent = money(total);
   }
 
-  // === NUEVO DOCUMENTO (con Sheets) ===
-  async function newDoc() {
+  function newDoc() {
     $("#client").value = "";
     $("#address").value = "";
     $("#notes").value = "";
     tbody.innerHTML = "";
     for (let i = 0; i < 5; i++) addRow();
-
-    // Pedimos el último número a Google Sheets
-    let lastNum = await getLastNumber();
-    let nextNum = lastNum + 1;
-    await updateNumber(nextNum);
-
-    biz.next = nextNum;
-    LS.set("ps_biz", biz); // guardamos solo info de la empresa en local
+    biz.next++;
+    LS.set("ps_biz", biz);
     renderBiz();
     $("#today").textContent = today();
   }
 
-  // === Botones principales ===
   $("#btn-print").addEventListener("click", () => window.print());
 
   $("#btn-pdf").addEventListener("click", () => {
@@ -151,7 +117,6 @@
   $("#btn-new").addEventListener("click", newDoc);
   $("#btn-add-row").addEventListener("click", () => addRow());
 
-  // === Settings ===
   const dlg = $("#settings");
   $("#btn-settings").addEventListener("click", () => {
     $("#s-name").value = biz.name;
@@ -162,6 +127,7 @@
     $("#s-next").value = biz.next;
     dlg.showModal();
   });
+
   $("#save-settings").addEventListener("click", (e) => {
     e.preventDefault();
     biz.name = $("#s-name").value;
@@ -169,17 +135,13 @@
     biz.contact = $("#s-contact").value;
     biz.footer = $("#s-footer").value;
     biz.prefix = $("#s-prefix").value;
+    biz.next = Number($("#s-next").value) || biz.next;
     LS.set("ps_biz", biz);
     renderBiz();
     dlg.close();
   });
 
-  // Inicializamos
-  (async () => {
-    let lastNum = await getLastNumber();
-    biz.next = lastNum;
-    renderBiz();
-    for (let i = 0; i < 5; i++) addRow();
-    recalc();
-  })();
+  renderBiz();
+  for (let i = 0; i < 5; i++) addRow();
+  recalc();
 })();
