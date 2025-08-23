@@ -84,16 +84,29 @@
     $("#grand").textContent = money(total);
   }
 
-  function newDoc() {
+  async function newDoc() {
     $("#client").value = "";
     $("#address").value = "";
     $("#notes").value = "";
     tbody.innerHTML = "";
     for (let i = 0; i < 5; i++) addRow();
-    biz.next++;
-    LS.set("ps_biz", biz);
-    renderBiz();
-    $("#today").textContent = today();
+
+    // 🔄 Tomar número desde Firebase
+    const numeroRef = dbRef(window.db, "presupuesto/numero_actual");
+    try {
+      const snapshot = await dbTransaction(numeroRef, (curr) => {
+        return (curr || 0) + 1;
+      });
+
+      const newNumber = snapshot.snapshot.val();
+      biz.next = newNumber;
+      LS.set("ps_biz", biz);
+      renderBiz();
+      $("#today").textContent = today();
+    } catch (error) {
+      alert("Error al obtener número de presupuesto desde Firebase");
+      console.error(error);
+    }
   }
 
   $("#btn-print").addEventListener("click", () => window.print());
