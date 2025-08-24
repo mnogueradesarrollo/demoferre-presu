@@ -47,9 +47,7 @@
 
   const tbody = $("#items tbody");
 
-  function addRow(
-    d = { qty: "1", unit: "1001", desc: "Kit de Herramientas", price: "$1000" }
-  ) {
+  function addRow(d = { qty: "", unit: "", desc: "", price: "" }) {
     const tr = document.createElement("tr");
     tr.innerHTML = `<td><input type="number" value="${d.qty}></td>
     <td><input type="text" value="${d.unit}"></td>
