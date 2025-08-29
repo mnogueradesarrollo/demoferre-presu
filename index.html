@@ -11,7 +11,10 @@
       <header class="topbar">
         <div class="brand-mini">
           <div class="logo-placeholder">
-            <img src="./img/LOGO_LA_UNICA_BLANCO-removebg-preview.png" alt="Logo de la ferretería" />
+            <img
+              src="./img/LOGO_LA_UNICA_BLANCO-removebg-preview.png"
+              alt="Logo de la ferretería"
+            />
             <!--<span id="biz-logo-fallback">LOGO</span>-->
           </div>
         </div>
@@ -93,48 +96,7 @@
       </section>
     </div>
 
-    <!-- Modal de datos del comercio -->
-    <dialog id="settings">
-      <form method="dialog" class="dialog">
-        <h3>Datos del comercio</h3>
-        <p class="muted">
-          Estos datos quedan guardados en tu navegador (LocalStorage).
-        </p>
-        <div class="meta">
-          <div class="box">
-            <label>Nombre del comercio</label>
-            <input id="s-name" />
-            <label style="margin-top: 8px">Rubro / Lema (opcional)</label>
-            <input id="s-sub" />
-            <label style="margin-top: 8px"
-              >Contacto (dirección, teléfono, email)</label
-            >
-            <textarea id="s-contact"></textarea>
-          </div>
-          <div class="box">
-            <label>Pie de página</label>
-            <textarea id="s-footer"></textarea>
-            <div class="two">
-              <div>
-                <label>Prefijo</label>
-                <input id="s-prefix" placeholder="Ej: 0000" />
-              </div>
-              <div>
-                <label>Próximo número</label>
-                <input id="s-next" type="number" min="1" />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="actions end">
-          <button class="ghost" value="cancel">Cancelar</button>
-          <button class="primary" id="save-settings" value="default">
-            Guardar
-          </button>
-        </div>
-      </form>
-    </dialog>
-
+    <!-- 📦 Firebase + carga segura de script.js -->
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
       import {
@@ -156,15 +118,19 @@
         appId: "1:297562954448:web:16d309140f45b1b1409cd5",
       };
 
-      // Exponer Firebase en window para usar en script.js
+      // Inicializar Firebase
       const app = initializeApp(firebaseConfig);
       window.db = getDatabase(app);
       window.dbRef = ref;
       window.dbGet = get;
       window.dbSet = set;
       window.dbTransaction = runTransaction;
+
+      // ✅ Cargar script.js después de exponer Firebase
+      const script = document.createElement("script");
+      script.src = "script.js";
+      document.body.appendChild(script);
     </script>
-    <script src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   </body>
 </html>
