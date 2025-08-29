@@ -154,7 +154,22 @@
     dlg.close();
   });
 
-  renderBiz();
-  for (let i = 0; i < 5; i++) addRow();
-  recalc();
+  (async () => {
+    try {
+      const numeroRef = dbRef(window.db, "presupuesto/numero_actual");
+      const snapshot = await dbGet(numeroRef);
+
+      if (snapshot.exists()) {
+        const ultimo = snapshot.val();
+        biz.next = ultimo;
+        LS.set("ps_biz", biz);
+      }
+    } catch (e) {
+      console.warn("No se pudo obtener el número de Firebase:", e);
+    }
+
+    renderBiz();
+    for (let i = 0; i < 5; i++) addRow();
+    recalc();
+  })();
 })();
