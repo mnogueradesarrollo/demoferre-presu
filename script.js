@@ -1,4 +1,4 @@
-(function () {
+document.addEventListener("DOMContentLoaded", () => {
   const $ = (s) => document.querySelector(s);
   const $$ = (s) => Array.from(document.querySelectorAll(s));
 
@@ -91,10 +91,9 @@
     tbody.innerHTML = "";
     for (let i = 0; i < 5; i++) addRow();
 
-    // 🔄 Tomar número desde Firebase
-    const numeroRef = dbRef(window.db, "presupuesto/numero_actual");
+    const numeroRef = window.dbRef(window.db, "presupuesto/numero_actual");
     try {
-      const snapshot = await dbTransaction(numeroRef, (curr) => {
+      const snapshot = await window.dbTransaction(numeroRef, (curr) => {
         return (curr || 0) + 1;
       });
 
@@ -166,7 +165,6 @@
         biz.next = ultimo;
         LS.set("ps_biz", biz);
       } else {
-        // Si no existe en Firebase, inicializamos con 1
         await window.dbSet(numeroRef, 1);
         biz.next = 1;
         LS.set("ps_biz", biz);
@@ -175,9 +173,8 @@
       console.warn("No se pudo obtener el número de Firebase:", e);
     }
 
-    // Solo después de sincronizar mostramos todo
     renderBiz();
     for (let i = 0; i < 5; i++) addRow();
     recalc();
   })();
-})();
+});
