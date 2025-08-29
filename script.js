@@ -154,6 +154,7 @@
     dlg.close();
   });
 
+  // 🔁 Al cargar la página: sincronizar con Firebase para obtener el último número
   (async () => {
     try {
       const numeroRef = dbRef(window.db, "presupuesto/numero_actual");
