@@ -217,14 +217,14 @@ table.items input {
 }
 
 .logo-placeholder {
-  width: 180px;
-  height: 70px;
-  border: 2px dashed var(--line);
+  width: 280px;
+  height: 140px;
+  /* border: 2px dashed var(--line); */
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fff;
+  
   overflow: hidden;
 }
 
