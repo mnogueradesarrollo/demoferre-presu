@@ -156,10 +156,10 @@
 
   // 🔁 Al cargar la página: sincronizar con Firebase para obtener el último número
   (async () => {
-    const numeroRef = dbRef(window.db, "presupuesto/numero_actual");
+    const numeroRef = window.dbRef(window.db, "presupuesto/numero_actual");
 
     try {
-      const snapshot = await dbGet(numeroRef);
+      const snapshot = await window.dbGet(numeroRef);
 
       if (snapshot.exists()) {
         const ultimo = snapshot.val();
@@ -167,7 +167,7 @@
         LS.set("ps_biz", biz);
       } else {
         // Si no existe en Firebase, inicializamos con 1
-        await dbSet(numeroRef, 1);
+        await window.dbSet(numeroRef, 1);
         biz.next = 1;
         LS.set("ps_biz", biz);
       }
