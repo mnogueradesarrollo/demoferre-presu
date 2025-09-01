@@ -244,8 +244,15 @@ table.items input {
 /* Impresión */
 @media print {
   .topbar {
+    display: flex;
+    justify-content: center;
+    padding: 12px;
+  }
+
+  .actions {
     display: none;
   }
+
   body {
     background: #fff;
   }
