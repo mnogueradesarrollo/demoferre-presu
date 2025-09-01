@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
     $("#biz-sub").textContent = biz.sub;
     $(
       "#biz-contact"
-    ).innerHTML = `${biz.address}<br>Tel: ${biz.phone}<br>${biz.email}`;
+    ).innerHTML = `${biz.address}<br>${biz.phone}<br>${biz.email}`;
     $("#biz-footer").textContent = biz.footer;
     const seqValue =
       (biz.prefix ? biz.prefix + "-" : "") + String(biz.next).padStart(4, "0");
