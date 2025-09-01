@@ -248,6 +248,7 @@ table.items input {
     justify-content: center;
     width: 25%;
     height: auto;
+    padding: 12px;
   }
 
   .actions {
