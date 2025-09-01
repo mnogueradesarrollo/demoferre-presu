@@ -27,11 +27,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const $$ = (s) => Array.from(document.querySelectorAll(s));
 
   const biz = {
-    name: "Ferreteria La Única",
+    name: "BULONERA La Única",
     sub: "Bulonería y Ferretería",
-    address: "Av. Zapiola 474, Paso del Rey",
-    phone: "11 2735 5082",
-    email: "launicaferreok@gmail.com",
+    address: "📍 Av. Zapiola 474, Paso del Rey",
+    phone: "📞 11 2735 5082 (Whatsapp)",
+    email: "📧 launicaferreok@gmail.com",
     footer: "Gracias por su compra. Precios sujetos a cambio sin previo aviso.",
     prefix: "",
     next: 1,
