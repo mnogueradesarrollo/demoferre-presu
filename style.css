@@ -246,7 +246,8 @@ table.items input {
   .topbar {
     display: flex;
     justify-content: center;
-    padding: 12px;
+    width: 25%;
+    height: auto;
   }
 
   .actions {
