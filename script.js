@@ -26,33 +26,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const $ = (s) => document.querySelector(s);
   const $$ = (s) => Array.from(document.querySelectorAll(s));
 
-  const LS = {
-    get(k, d) {
-      try {
-        return JSON.parse(localStorage.getItem(k)) || d;
-      } catch (e) {
-        return d;
-      }
-    },
-    set(k, v) {
-      localStorage.setItem(k, JSON.stringify(v));
-    },
-  };
-
-  const defaults = {
-    name: "Tu Comercio",
-    sub: "Rubro o lema",
-    contact: "Dirección · Teléfono",
-    footer: "Gracias por su consulta",
+  const biz = {
+    name: "Ferreteria La Única",
+    sub: "Bulonería y Ferretería",
+    address: "Av. Zapiola 474, Paso del Rey",
+    phone: "11 2735 5082",
+    email: "launicaferreok@gmail.com",
+    footer: "Gracias por su compra. Precios sujetos a cambio sin previo aviso.",
     prefix: "",
     next: 1,
   };
-  const biz = Object.assign({}, defaults, LS.get("ps_biz", {}));
 
   function renderBiz() {
     $("#biz-name").textContent = biz.name;
     $("#biz-sub").textContent = biz.sub;
-    $("#biz-contact").textContent = biz.contact;
+    $(
+      "#biz-contact"
+    ).innerHTML = `${biz.address}<br>Tel: ${biz.phone}<br>${biz.email}`;
     $("#biz-footer").textContent = biz.footer;
     const seqValue =
       (biz.prefix ? biz.prefix + "-" : "") + String(biz.next).padStart(4, "0");
@@ -118,13 +108,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // 🔄 Obtener y actualizar número de presupuesto
     const numeroRef = ref(db, "presupuesto/numero_actual");
     try {
-      const snapshot = await renTransaction(numeroRef, (curr) => {
+      const snapshot = await runTransaction(numeroRef, (curr) => {
         return (curr || 0) + 1;
       });
 
       const newNumber = snapshot.snapshot.val();
       biz.next = newNumber;
-      LS.set("ps_biz", biz);
       renderBiz();
       $("#today").textContent = today();
     } catch (error) {
@@ -154,29 +143,30 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#btn-new").addEventListener("click", newDoc);
   $("#btn-add-row").addEventListener("click", () => addRow());
 
-  const dlg = $("#settings");
-  $("#btn-settings").addEventListener("click", () => {
-    $("#s-name").value = biz.name;
-    $("#s-sub").value = biz.sub;
-    $("#s-contact").value = biz.contact;
-    $("#s-footer").value = biz.footer;
-    $("#s-prefix").value = biz.prefix;
-    $("#s-next").value = biz.next;
-    dlg.showModal();
-  });
+  // CONFIGURACION DATOS DEL COMERCIO
+  // const dlg = $("#settings");
+  // $("#btn-settings").addEventListener("click", () => {
+  //   $("#s-name").value = biz.name;
+  //   $("#s-sub").value = biz.sub;
+  //   $("#s-contact").value = biz.contact;
+  //   $("#s-footer").value = biz.footer;
+  //   $("#s-prefix").value = biz.prefix;
+  //   $("#s-next").value = biz.next;
+  //   dlg.showModal();
+  // });
 
-  $("#save-settings").addEventListener("click", (e) => {
-    e.preventDefault();
-    biz.name = $("#s-name").value;
-    biz.sub = $("#s-sub").value;
-    biz.contact = $("#s-contact").value;
-    biz.footer = $("#s-footer").value;
-    biz.prefix = $("#s-prefix").value;
-    biz.next = Number($("#s-next").value) || biz.next;
-    LS.set("ps_biz", biz);
-    renderBiz();
-    dlg.close();
-  });
+  // $("#save-settings").addEventListener("click", (e) => {
+  //   e.preventDefault();
+  //   biz.name = $("#s-name").value;
+  //   biz.sub = $("#s-sub").value;
+  //   biz.contact = $("#s-contact").value;
+  //   biz.footer = $("#s-footer").value;
+  //   biz.prefix = $("#s-prefix").value;
+  //   biz.next = Number($("#s-next").value) || biz.next;
+  //   LS.set("ps_biz", biz);
+  //   renderBiz();
+  //   dlg.close();
+  // });
 
   // 🔁 Al cargar la página: sincronizar con Firebase para obtener el último número
   (async () => {
@@ -188,11 +178,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (snapshot.exists()) {
         const ultimo = snapshot.val();
         biz.next = ultimo;
-        LS.set("ps_biz", biz);
       } else {
         await set(numeroRef, 1);
         biz.next = 1;
-        LS.set("ps_biz", biz);
       }
     } catch (e) {
       console.warn("No se pudo obtener el número de Firebase:", e);
