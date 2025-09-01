@@ -224,7 +224,7 @@ table.items input {
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   overflow: hidden;
 }
 
@@ -254,8 +254,8 @@ table.items input {
     padding: 0;
   }
   .card {
-    border: 1px solid #000;
-    border-radius: 15px;
+    /* border: 1px solid #000;
+    border-radius: 15px; */
     box-shadow: none;
     width: 100%;
     min-height: 100vh;
