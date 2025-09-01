@@ -92,6 +92,8 @@ button.ghost {
 
 .brand small {
   color: var(--muted);
+  display: block; /* 👈 Mostrar en líneas separadas */
+  margin-bottom: 2px;
 }
 
 .badge {
@@ -219,12 +221,10 @@ table.items input {
 .logo-placeholder {
   width: 280px;
   height: 140px;
-  /* border: 2px dashed var(--line); */
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-
   overflow: hidden;
 }
 
@@ -241,15 +241,12 @@ table.items input {
   color: var(--muted);
 }
 
-/* Impresión */
+/* -------- IMPRESIÓN -------- */
 @media print {
   .topbar {
-    display: flex;
-    justify-content: center;
-    width: 25%;
-    height: auto;
-    align-items: center;
-    align-content: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 12px;
   }
 
   .actions {
@@ -259,21 +256,31 @@ table.items input {
   body {
     background: #fff;
   }
+
   .wrap {
     margin-left: 10px;
     margin-right: 10px;
     padding-left: 5px;
     padding-right: 5px;
   }
+
   .card {
-    /* border: 1px solid #000;
-    border-radius: 15px; */
     box-shadow: none;
     width: 100%;
     min-height: 100vh;
   }
+
   .sheet {
     padding: 24px 32px;
+  }
+
+  .brand-mini {
+    justify-content: flex-start;
+    margin-bottom: 12px;
+  }
+
+  .logo-placeholder img {
+    max-height: 100px; /* Asegura tamaño correcto del logo */
   }
 }
 
@@ -281,7 +288,7 @@ table.items input {
   margin: 0;
 }
 
-/* ----------- Responsividad ----------- */
+/* ----------- RESPONSIVIDAD ----------- */
 @media (max-width: 768px) {
   .topbar {
     flex-direction: column;
