@@ -137,7 +137,7 @@
       </form>
     </dialog>
 
-    <!-- 📦 Firebase + carga de script.js asegurada -->
+    <!-- Firebase y script.js deben cargarse en orden -->
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
       import {
@@ -159,21 +159,24 @@
         appId: "1:297562954448:web:16d309140f45b1b1409cd5",
       };
 
+      // Inicializar Firebase
       const app = initializeApp(firebaseConfig);
-      window.db = getDatabase(app);
+      const db = getDatabase(app);
+
+      // Exponer en window para uso en script.js
+      window.db = db;
       window.dbRef = ref;
       window.dbGet = get;
       window.dbSet = set;
       window.dbTransaction = runTransaction;
 
-      // ✅ Cargar script.js como MÓDULO
+      // Cargar script.js solo cuando Firebase está listo
       const script = document.createElement("script");
-      script.type = "module"; // <--- ESTA LÍNEA ES CLAVE
       script.src = "script.js";
       document.body.appendChild(script);
     </script>
 
-    <!-- PDF export -->
+    <!-- Librería de PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   </body>
 </html>
