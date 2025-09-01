@@ -1,3 +1,27 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getDatabase,
+  ref,
+  get,
+  set,
+  runTransaction,
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCIxef-Xq7bnTRYrdMe0qn--_RVrPumqeU",
+  authDomain: "presupuesto-ferreteria-8ddc5.firebaseapp.com",
+  databaseURL:
+    "https://presupuesto-ferreteria-8ddc5-default-rtdb.firebaseio.com",
+  projectId: "presupuesto-ferreteria-8ddc5",
+  storageBucket: "presupuesto-ferreteria-8ddc5.appspot.com",
+  messagingSenderId: "297562954448",
+  appId: "1:297562954448:web:16d309140f45b1b1409cd5",
+};
+
+// Inicializar Firebase
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
 document.addEventListener("DOMContentLoaded", () => {
   const $ = (s) => document.querySelector(s);
   const $$ = (s) => Array.from(document.querySelectorAll(s));
@@ -91,9 +115,10 @@ document.addEventListener("DOMContentLoaded", () => {
     tbody.innerHTML = "";
     for (let i = 0; i < 5; i++) addRow();
 
-    const numeroRef = window.dbRef(window.db, "presupuesto/numero_actual");
+    // 🔄 Obtener y actualizar número de presupuesto
+    const numeroRef = ref(db, "presupuesto/numero_actual");
     try {
-      const snapshot = await window.dbTransaction(numeroRef, (curr) => {
+      const snapshot = await renTransaction(numeroRef, (curr) => {
         return (curr || 0) + 1;
       });
 
@@ -155,17 +180,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 🔁 Al cargar la página: sincronizar con Firebase para obtener el último número
   (async () => {
-    const numeroRef = window.dbRef(window.db, "presupuesto/numero_actual");
+    const numeroRef = ref(db, "presupuesto/numero_actual");
 
     try {
-      const snapshot = await window.dbGet(numeroRef);
+      const snapshot = await get(numeroRef);
 
       if (snapshot.exists()) {
         const ultimo = snapshot.val();
         biz.next = ultimo;
         LS.set("ps_biz", biz);
       } else {
-        await window.dbSet(numeroRef, 1);
+        await set(numeroRef, 1);
         biz.next = 1;
         LS.set("ps_biz", biz);
       }

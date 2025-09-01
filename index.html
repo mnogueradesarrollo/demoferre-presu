@@ -138,44 +138,44 @@
     </dialog>
 
     <!-- Firebase y script.js deben cargarse en orden -->
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-      import {
-        getDatabase,
-        ref,
-        get,
-        set,
-        runTransaction,
-      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+    <!-- <script type="module">
+      // import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+      // import {
+      //   getDatabase,
+      //   ref,
+      //   get,
+      //   set,
+      //   runTransaction,
+      // } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
-      const firebaseConfig = {
-        apiKey: "AIzaSyCIxef-Xq7bnTRYrdMe0qn--_RVrPumqeU",
-        authDomain: "presupuesto-ferreteria-8ddc5.firebaseapp.com",
-        databaseURL:
-          "https://presupuesto-ferreteria-8ddc5-default-rtdb.firebaseio.com",
-        projectId: "presupuesto-ferreteria-8ddc5",
-        storageBucket: "presupuesto-ferreteria-8ddc5.appspot.com",
-        messagingSenderId: "297562954448",
-        appId: "1:297562954448:web:16d309140f45b1b1409cd5",
-      };
+      // const firebaseConfig = {
+      //   apiKey: "AIzaSyCIxef-Xq7bnTRYrdMe0qn--_RVrPumqeU",
+      //   authDomain: "presupuesto-ferreteria-8ddc5.firebaseapp.com",
+      //   databaseURL:
+      //     "https://presupuesto-ferreteria-8ddc5-default-rtdb.firebaseio.com",
+      //   projectId: "presupuesto-ferreteria-8ddc5",
+      //   storageBucket: "presupuesto-ferreteria-8ddc5.appspot.com",
+      //   messagingSenderId: "297562954448",
+      //   appId: "1:297562954448:web:16d309140f45b1b1409cd5",
+      // };
 
-      // Inicializar Firebase
-      const app = initializeApp(firebaseConfig);
-      const db = getDatabase(app);
+      // // Inicializar Firebase
+      // const app = initializeApp(firebaseConfig);
+      // const db = getDatabase(app);
 
-      // Exponer en window para uso en script.js
-      window.db = db;
-      window.dbRef = ref;
-      window.dbGet = get;
-      window.dbSet = set;
-      window.dbTransaction = runTransaction;
+      // // Exponer en window para uso en script.js
+      // window.db = db;
+      // window.dbRef = ref;
+      // window.dbGet = get;
+      // window.dbSet = set;
+      // window.dbTransaction = runTransaction;
 
       // Cargar script.js solo cuando Firebase está listo
       // const script = document.createElement("script");
       // script.src = "script.js";
       // document.body.appendChild(script);
-    </script>
-    <script src="script.js"></script>
+    </script> -->
+    <script type="module" src="script.js"></script>
     <!-- Librería de PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   </body>
