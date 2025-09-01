@@ -166,8 +166,9 @@
       window.dbSet = set;
       window.dbTransaction = runTransaction;
 
-      // ✅ Solo después de exponer Firebase cargamos script.js
+      // ✅ Cargar script.js como MÓDULO
       const script = document.createElement("script");
+      script.type = "module"; // <--- ESTA LÍNEA ES CLAVE
       script.src = "script.js";
       document.body.appendChild(script);
     </script>
