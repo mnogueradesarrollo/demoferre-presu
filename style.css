@@ -241,7 +241,148 @@ table.items input {
   color: var(--muted);
 }
 
-/* -------- IMPRESIÓN -------- */
+/* Tamaño de hoja y márgenes del PDF */
+@page {
+  size: A4; /* fuerzo A4 */
+  margin: 8mm 10mm; /* margen seguro para que no “desborde” por px */
+}
+
+@media print {
+  /* Evitar que el navegador reescale colores */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body {
+    background: #fff;
+    font-size: 13px;
+    margin: 0;
+  }
+
+  .wrap {
+    margin: 0 !important;
+    padding: 0 0 !important;
+  }
+
+  .topbar {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0 0 6px;
+  }
+  .actions {
+    display: none !important;
+  }
+
+  .card {
+    border: none;
+    box-shadow: none;
+    width: 100%;
+    /* 🔴 importante: NO usar min-height en print */
+    min-height: auto !important;
+    height: auto !important;
+    margin: 0;
+    /* evitar cortes raros */
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .sheet {
+    padding: 10px 8px; /* compacta */
+    margin: 0;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .brandline {
+    margin: 0 0 6px;
+    padding: 0 0 6px;
+    border-bottom: 1px solid #ccc;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  .brand h1 {
+    font-size: 18px;
+    margin: 0 0 2px;
+  }
+  .brand small {
+    font-size: 11px;
+    line-height: 1.2;
+    display: block;
+  }
+
+  .badge .num {
+    font-size: 16px;
+  }
+
+  .meta {
+    gap: 4px;
+    margin: 0 0 8px;
+  }
+  .meta .box {
+    padding: 4px;
+    border: none;
+    background: none;
+  }
+  .meta label {
+    font-size: 11px;
+    margin: 0 0 2px;
+  }
+  .meta input,
+  .meta textarea {
+    font-size: 11px;
+    padding: 3px 5px;
+    line-height: 1.2;
+  }
+
+  table.items {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  table.items thead th {
+    font-size: 11px;
+    padding: 4px 6px;
+  }
+  table.items tbody td {
+    padding: 4px 6px;
+  }
+  table.items input {
+    font-size: 12px;
+    padding: 4px;
+  }
+
+  .totals {
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .totals .grand {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .footer {
+    border-top: 1px solid #ccc;
+    padding: 6px 0 0;
+    margin-top: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Evitar que la última línea con margen provoque una hoja extra */
+  .footer,
+  .sheet,
+  .card {
+    margin-bottom: 0 !important;
+  }
+}
+
+/* -------- IMPRESIÓN --------
 @media print {
   body {
     background: #fff;
@@ -352,7 +493,7 @@ table.items input {
     padding: 8px;
     border-top: 1px solid #ccc;
   }
-}
+} */
 
 /* ----------- RESPONSIVIDAD ----------- */
 @media (max-width: 768px) {
