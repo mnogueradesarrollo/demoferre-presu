@@ -175,11 +175,11 @@ table.items input {
 }
 
 .col-price {
-  width: 120px;
+  width: 90px;
 }
 
 .col-sub {
-  width: 150px;
+  width: 110px;
   text-align: right;
 }
 
@@ -244,7 +244,7 @@ table.items input {
 /* Tamaño de hoja y márgenes del PDF */
 @page {
   size: A4; /* fuerzo A4 */
-  margin: 8mm 10mm; /* margen seguro para que no “desborde” por px */
+  margin: 10mm 15mm; /* margen seguro para que no “desborde” por px */
 }
 
 @media print {
@@ -282,8 +282,7 @@ table.items input {
     /* 🔴 importante: NO usar min-height en print */
     min-height: auto !important;
     height: auto !important;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin: 0;
     /* evitar cortes raros */
     page-break-inside: avoid;
     break-inside: avoid;
