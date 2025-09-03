@@ -346,6 +346,45 @@ table.items input {
     padding: 4px;
   }
 
+  /* ==== Alineación de precios SOLO en impresión ==== */
+
+  /* Mantener anchos de las columnas de precios en print */
+  .col-price {
+    width: 90px !important;
+  } /* P. Unitario */
+  .col-sub {
+    width: 110px !important;
+  } /* Total producto */
+
+  /* Encabezados alineados a la derecha */
+  table.items thead th:nth-child(4),
+  table.items thead th:nth-child(5) {
+    text-align: right !important;
+    padding-right: 10px;
+  }
+
+  /* Celdas de precios alineadas a la derecha y centradas verticalmente */
+  table.items tbody td:nth-child(4),
+  table.items tbody td:nth-child(5) {
+    text-align: right !important;
+    vertical-align: middle;
+    padding-right: 10px; /* pequeño respiro al borde */
+    font-variant-numeric: tabular-nums; /* números con ancho uniforme */
+  }
+
+  /* Input del “P. Unitario” (columna 4) alineado a la derecha */
+  table.items tbody td:nth-child(4) input {
+    text-align: right !important;
+    padding-right: 8px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  /* El total por producto ya es texto; reforzamos el estilo */
+  table.items tbody td:nth-child(5) {
+    font-weight: 600;
+  }
+
   .totals {
     gap: 8px;
     margin-top: 8px;
