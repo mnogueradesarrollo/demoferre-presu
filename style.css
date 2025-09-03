@@ -71,6 +71,7 @@ button.ghost {
   padding: 24px;
 }
 
+/* Cabecera del presupuesto */
 .brandline {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -107,7 +108,7 @@ button.ghost {
   font-size: 12px;
 }
 
-/* Inputs un poco más “finos” */
+/* Datos del cliente */
 .meta {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -129,6 +130,7 @@ button.ghost {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02) inset;
 }
 
+/* Tabla */
 table.items {
   width: 100%;
   border-collapse: collapse;
@@ -152,20 +154,20 @@ table.items input {
   border-radius: 8px;
 }
 
-/* >>> Ajuste de anchos: más espacio para Descripción */
+/* >>> Más espacio para Descripción */
 .col-qty {
-  width: 80px;
+  width: 70px;
 }
 .col-unit {
   width: 80px;
 }
 .col-price {
   width: 90px;
-} /* antes 120 / 90 */
+} /* angosta */
 .col-sub {
   width: 110px;
   text-align: right;
-} /* antes 150 / 110 */
+} /* angosta */
 .col-act {
   width: 40px;
 }
@@ -173,6 +175,8 @@ table.items input {
 .subtotal {
   text-align: right;
 }
+
+/* Totales */
 .totals {
   display: flex;
   justify-content: flex-end;
@@ -185,6 +189,7 @@ table.items input {
   font-weight: 700;
 }
 
+/* Footer */
 .footer {
   display: flex;
   justify-content: space-between;
@@ -193,7 +198,7 @@ table.items input {
   border-top: 1px solid var(--line);
 }
 
-/* Logo */
+/* Logo (barra superior) */
 .brand-mini {
   display: flex;
   align-items: center;
@@ -219,20 +224,10 @@ table.items input {
   color: var(--muted);
 }
 
-/* --- Logo dentro de la hoja --- */
-.print-logo {
-  display: block; /* visible en pantalla y PDF */
-  margin: 0 0 6px 0;
-}
-.print-logo img {
-  height: 36px; /* ajusta el alto del logo impreso */
-  display: block;
-}
-
 /* -------- Tamaño de hoja y márgenes de impresión -------- */
 @page {
   size: A4;
-  margin: 18mm 20mm; /* laterales más amplios */
+  margin: 14mm 18mm; /* laterales + aire */
 }
 
 /* -------- Print -------- */
@@ -241,6 +236,7 @@ table.items input {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
+
   body {
     background: #fff;
     font-size: 13px;
@@ -250,17 +246,17 @@ table.items input {
     margin: 0 !important;
     padding: 0 !important;
   }
+
+  /* Muestro el logo de la topbar pero oculto los botones */
+  .topbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin: 0 0 6px;
+  }
   .actions {
     display: none !important;
-  }
-
-  /* Dejo visible el logo arriba y lo escalo un poco para PDF */
-  .topbar {
-    display: none;
-  }
-  .logo-placeholder {
-    width: 150px;
-    height: 60px;
   }
 
   .card {
@@ -283,7 +279,7 @@ table.items input {
   .brandline {
     margin: 6px 0 8px;
     padding: 0 0 6px;
-    border-bottom: 1px solid #ffffff;
+    border-bottom: 1px solid #ccc;
     page-break-after: avoid;
     break-after: avoid;
   }
@@ -300,16 +296,17 @@ table.items input {
     font-size: 16px;
   }
 
+  /* Datos del cliente más compactos para que entren más ítems */
   .meta {
     gap: 6px;
     margin: 0 0 8px;
   }
   .meta .box {
-    padding: 5px;
+    padding: 6px;
     border: 1px dashed #eaeaea;
     border-radius: 8px;
     background: #fff;
-  } /* bordes prolijos en impresión */
+  }
   .meta label {
     font-size: 11px;
     margin: 0 0 2px;
@@ -342,7 +339,7 @@ table.items input {
     font-weight: 700;
   }
 
-  /* Pie completamente blanco en PDF */
+  /* Pie 100% blanco y sin empujar a 2ª hoja */
   .footer {
     border-top: 1px solid #ccc;
     padding: 6px 0 0;
@@ -351,12 +348,10 @@ table.items input {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    background: #fff !important; /* ← fuerzo blanco */
+    background: #fff !important;
     page-break-inside: avoid;
     break-inside: avoid;
   }
-
-  /* Evitar hoja extra por márgenes finales */
   .footer,
   .sheet,
   .card {
@@ -388,6 +383,7 @@ table.items input {
   .meta {
     grid-template-columns: 1fr;
   }
+
   table.items {
     display: block;
     width: 100%;
@@ -401,6 +397,7 @@ table.items input {
     width: 100%;
     table-layout: fixed;
   }
+
   .totals {
     flex-direction: column;
     align-items: flex-end;
@@ -413,6 +410,7 @@ table.items input {
     gap: 6px;
   }
 }
+
 @media (max-width: 480px) {
   body {
     font-size: 14px;
