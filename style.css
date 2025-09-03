@@ -6,10 +6,10 @@
   --line: #e6e8f0;
 }
 
+/* -------- Base (pantalla) -------- */
 * {
   box-sizing: border-box;
 }
-
 html,
 body {
   overflow-x: hidden;
@@ -25,9 +25,7 @@ body {
 .sheet {
   width: 100%;
   max-width: 100%;
-  box-sizing: border-box;
 }
-
 .wrap {
   max-width: 980px;
   margin: 28px auto;
@@ -40,7 +38,6 @@ body {
   align-items: center;
   margin-bottom: 16px;
 }
-
 .actions {
   display: flex;
   gap: 8px;
@@ -55,13 +52,11 @@ button {
   font-weight: 600;
   cursor: pointer;
 }
-
 button.primary {
   background: var(--accent);
   color: #fff;
   border-color: transparent;
 }
-
 button.ghost {
   background: var(--paper);
 }
@@ -72,7 +67,6 @@ button.ghost {
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(34, 99, 255, 0.07);
 }
-
 .sheet {
   padding: 24px;
 }
@@ -84,33 +78,28 @@ button.ghost {
   padding-bottom: 18px;
   margin-bottom: 18px;
 }
-
 .brand h1 {
   margin: 0;
   font-size: 26px;
 }
-
 .brand small {
   color: var(--muted);
-  display: block; /* 👈 Mostrar en líneas separadas */
+  display: block;
   margin-bottom: 2px;
 }
 
 .badge {
   text-align: right;
 }
-
 .badge .num {
   font-family: monospace;
   font-size: 20px;
   font-weight: 700;
 }
-
 .mini {
   font-size: 12px;
   color: var(--muted);
 }
-
 .pill {
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -118,19 +107,18 @@ button.ghost {
   font-size: 12px;
 }
 
+/* Inputs un poco más “finos” */
 .meta {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
-
 .meta .box {
   border: 1px dashed var(--line);
   padding: 12px;
   border-radius: 12px;
   background: #fafbff;
 }
-
 .meta input,
 .meta textarea {
   width: 100%;
@@ -138,6 +126,7 @@ button.ghost {
   border-radius: 10px;
   padding: 10px 12px;
   background: #fff;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02) inset;
 }
 
 table.items {
@@ -145,7 +134,6 @@ table.items {
   border-collapse: collapse;
   margin-top: 18px;
 }
-
 table.items thead th {
   font-size: 12px;
   color: var(--muted);
@@ -153,12 +141,10 @@ table.items thead th {
   padding: 8px;
   text-align: left;
 }
-
 table.items tbody td {
   border-bottom: 1px dashed #eceef8;
   padding: 8px;
 }
-
 table.items input {
   width: 100%;
   border: 1px solid transparent;
@@ -166,23 +152,20 @@ table.items input {
   border-radius: 8px;
 }
 
+/* >>> Ajuste de anchos: más espacio para Descripción */
 .col-qty {
   width: 80px;
 }
-
 .col-unit {
   width: 120px;
 }
-
 .col-price {
-  width: 90px;
-}
-
+  width: 80px;
+} /* antes 120 / 90 */
 .col-sub {
-  width: 110px;
+  width: 100px;
   text-align: right;
-}
-
+} /* antes 150 / 110 */
 .col-act {
   width: 40px;
 }
@@ -190,7 +173,6 @@ table.items input {
 .subtotal {
   text-align: right;
 }
-
 .totals {
   display: flex;
   justify-content: flex-end;
@@ -198,7 +180,6 @@ table.items input {
   gap: 20px;
   align-items: flex-end;
 }
-
 .totals .grand {
   font-size: 28px;
   font-weight: 700;
@@ -217,7 +198,6 @@ table.items input {
   display: flex;
   align-items: center;
 }
-
 .logo-placeholder {
   width: 280px;
   height: 140px;
@@ -227,69 +207,67 @@ table.items input {
   justify-content: center;
   overflow: hidden;
 }
-
 .logo-placeholder img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
   display: block;
 }
-
 #biz-logo-fallback {
   font-weight: bold;
   font-size: 14px;
   color: var(--muted);
 }
 
-/* Tamaño de hoja y márgenes del PDF */
+/* -------- Tamaño de hoja y márgenes de impresión -------- */
 @page {
-  size: A4; /* fuerzo A4 */
-  margin: 10mm 15mm; /* margen seguro para que no “desborde” por px */
+  size: A4;
+  margin: 18mm 20mm; /* laterales más amplios */
 }
 
+/* -------- Print -------- */
 @media print {
-  /* Evitar que el navegador reescale colores */
   * {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
-
   body {
     background: #fff;
     font-size: 13px;
     margin: 0;
   }
-
   .wrap {
     margin: 0 !important;
-    padding: 0 0 !important;
+    padding: 0 !important;
+  }
+  .actions {
+    display: none !important;
   }
 
+  /* Dejo visible el logo arriba y lo escalo un poco para PDF */
   .topbar {
     display: flex;
     justify-content: center;
     width: 100%;
     margin: 0 0 6px;
   }
-  .actions {
-    display: none !important;
+  .logo-placeholder {
+    width: 150px;
+    height: 60px;
   }
 
   .card {
     border: none;
     box-shadow: none;
     width: 100%;
-    /* 🔴 importante: NO usar min-height en print */
     min-height: auto !important;
     height: auto !important;
     margin: 0;
-    /* evitar cortes raros */
     page-break-inside: avoid;
     break-inside: avoid;
   }
-
   .sheet {
-    padding: 10px 8px; /* compacta */
+    padding: 8px 0;
     margin: 0;
     page-break-inside: avoid;
     break-inside: avoid;
@@ -302,7 +280,6 @@ table.items input {
     page-break-after: avoid;
     break-after: avoid;
   }
-
   .brand h1 {
     font-size: 18px;
     margin: 0 0 2px;
@@ -310,7 +287,6 @@ table.items input {
   .brand small {
     font-size: 11px;
     line-height: 1.2;
-    display: block;
   }
 
   .badge .num {
@@ -318,14 +294,15 @@ table.items input {
   }
 
   .meta {
-    gap: 4px;
+    gap: 6px;
     margin: 0 0 8px;
   }
   .meta .box {
-    padding: 4px;
-    border: none;
-    background: none;
-  }
+    padding: 6px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background: #fff;
+  } /* bordes prolijos en impresión */
   .meta label {
     font-size: 11px;
     margin: 0 0 2px;
@@ -333,14 +310,10 @@ table.items input {
   .meta input,
   .meta textarea {
     font-size: 11px;
-    padding: 3px 5px;
+    padding: 4px 6px;
     line-height: 1.2;
   }
 
-  table.items {
-    width: 100%;
-    border-collapse: collapse;
-  }
   table.items thead th {
     font-size: 11px;
     padding: 4px 6px;
@@ -362,6 +335,7 @@ table.items input {
     font-weight: 700;
   }
 
+  /* Pie completamente blanco en PDF */
   .footer {
     border-top: 1px solid #ccc;
     padding: 6px 0 0;
@@ -370,11 +344,12 @@ table.items input {
     display: flex;
     flex-direction: column;
     gap: 4px;
+    background: #fff !important; /* ← fuerzo blanco */
     page-break-inside: avoid;
     break-inside: avoid;
   }
 
-  /* Evitar que la última línea con margen provoque una hoja extra */
+  /* Evitar hoja extra por márgenes finales */
   .footer,
   .sheet,
   .card {
@@ -382,155 +357,36 @@ table.items input {
   }
 }
 
-/* -------- IMPRESIÓN --------
-@media print {
-  body {
-    background: #fff;
-    font-size: 13px;
-  }
-
-  .wrap {
-    margin: 0;
-    padding: 0 10px;
-  }
-
-  .topbar {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-bottom: 8px;
-  }
-
-  .actions {
-    display: none;
-  }
-
-  .card {
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-    width: 100%;
-    min-height: 100vh;
-  }
-
-  .sheet {
-    padding: 12px 16px;
-  }
-
-  .brandline {
-    margin-bottom: 8px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #ccc;
-  }
-
-  .brand h1 {
-    font-size: 18px;
-    margin-bottom: 2px;
-  }
-
-  .brand small {
-    font-size: 11px;
-    display: block;
-    line-height: 1.2;
-  }
-
-  .badge .num {
-    font-size: 16px;
-  }
-
-  .meta {
-    gap: 4px;
-    margin-bottom: 12px;
-  }
-
-  .meta .box {
-    padding: 4px;
-    border: none;
-    background: none;
-  }
-
-  .meta label {
-    font-size: 11px;
-    margin-bottom: 2px;
-  }
-
-  .meta input,
-  .meta textarea {
-    font-size: 11px;
-    padding: 3px 5px;
-    line-height: 1.2;
-  }
-
-  table.items thead th {
-    font-size: 11px;
-    padding: 4px 6px;
-  }
-
-  table.items tbody td {
-    padding: 4px 6px;
-  }
-
-  table.items input {
-    font-size: 12px;
-    padding: 4px;
-  }
-
-  .totals {
-    gap: 10px;
-    margin-top: 12px;
-  }
-
-  .totals .grand {
-    font-size: 20px;
-    font-weight: 700;
-  }
-
-  .footer {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 4px;
-    padding: 8px;
-    border-top: 1px solid #ccc;
-  }
-} */
-
-/* ----------- RESPONSIVIDAD ----------- */
+/* -------- Responsivo -------- */
 @media (max-width: 768px) {
   .topbar {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
   }
-
   .brand-mini {
     justify-content: center;
     width: 100%;
     margin-bottom: 12px;
   }
-
   .actions {
     flex-wrap: wrap;
     gap: 8px;
     width: 100%;
   }
-
   .actions button {
     flex: 1;
     min-width: 120px;
   }
-
   .meta {
     grid-template-columns: 1fr;
   }
-
   table.items {
     display: block;
     width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
-
   table.items thead,
   table.items tbody,
   table.items tr {
@@ -538,13 +394,11 @@ table.items input {
     width: 100%;
     table-layout: fixed;
   }
-
   .totals {
     flex-direction: column;
     align-items: flex-end;
     gap: 4px;
   }
-
   .footer {
     flex-direction: column;
     align-items: center;
@@ -552,20 +406,16 @@ table.items input {
     gap: 6px;
   }
 }
-
 @media (max-width: 480px) {
   body {
     font-size: 14px;
   }
-
   .brand h1 {
     font-size: 20px;
   }
-
   .badge .num {
     font-size: 16px;
   }
-
   .actions button {
     font-size: 14px;
     padding: 8px 12px;
