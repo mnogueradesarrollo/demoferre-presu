@@ -256,10 +256,7 @@ table.items input {
 
   /* Dejo visible el logo arriba y lo escalo un poco para PDF */
   .topbar {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin: 0 0 6px;
+    display: none;
   }
   .logo-placeholder {
     width: 150px;
