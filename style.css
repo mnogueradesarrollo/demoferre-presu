@@ -367,7 +367,7 @@ table.items input {
 #sheet-card {
   width: 210mm; /* Ancho exacto de A4 */
   min-height: 297mm; /* Alto mínimo de A4 */
-  margin: 0 auto; /* Centrado horizontal */
+  margin: 0; /* Centrado horizontal */
   background: #fff; /* Asegura fondo blanco */
   box-sizing: border-box;
   padding: 15mm; /* Aire interior para que el borde no se corte */
