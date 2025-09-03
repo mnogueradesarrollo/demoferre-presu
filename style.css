@@ -17,7 +17,7 @@ body {
   margin: 0;
   font-family: system-ui, Segoe UI, Roboto, Arial;
   color: var(--ink);
-  background: #f4f6fb;
+  background: #fff !important;
 }
 
 .wrap,
@@ -232,7 +232,7 @@ table.items input {
 /* -------- Tamaño de hoja y márgenes de impresión -------- */
 @page {
   size: A4;
-  margin: 18mm 20mm; /* laterales más amplios */
+  margin: 14mm 16mm; /* laterales más amplios */
 }
 
 /* -------- Print -------- */
@@ -256,13 +256,26 @@ table.items input {
 
   /* Dejo visible el logo arriba y lo escalo un poco para PDF */
   .topbar {
-    display: none;
+    display: none !important;
   }
   .logo-placeholder {
     width: 150px;
     height: 60px;
   }
 
+  #sheet-card {
+    width: auto; /* Ancho exacto de A4 */
+    max-width: 190mm; /* ancho cómodo dentro de A4 con márgenes */
+    margin: 0 auto !important; /* Centrado horizontal */
+    padding: 10mm; /* Aire interior para que el borde no se corte */
+    min-height: auto !important; /* Alto mínimo de A4 */
+    border: 1px solid #aaa5; /* Borde visible en PDF */
+    border-radius: 6px;
+    background: #fff !important; /* Asegura fondo blanco */
+    box-sizing: border-box;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
   .card {
     border: none;
     box-shadow: none;
@@ -343,7 +356,7 @@ table.items input {
   }
 
   /* Pie completamente blanco en PDF */
-  .footer {
+  /* .footer {
     border-top: 1px solid #ccc;
     padding: 6px 0 0;
     margin-top: 8px;
@@ -351,9 +364,26 @@ table.items input {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    background: #fff !important; /* ← fuerzo blanco */
+    background: #fff !important; /* ← fuerzo blanco 
     page-break-inside: avoid;
     break-inside: avoid;
+  } */
+
+  .footer {
+    margin-top: 8px;
+    padding: 6px 0 0;
+    border-top: 1px solid #ddd !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  /* Contenedores padres también en blanco para que no aparezcan “bloques” grisáceos */
+  .wrap,
+  .card,
+  .sheet,
+  .footer {
+    background: #fff !important;
+    box-shadow: none !important;
+    border-color: #ddd !important;
   }
 
   /* Evitar hoja extra por márgenes finales */
@@ -364,21 +394,11 @@ table.items input {
   }
 }
 
-#sheet-card {
-  width: 210mm; /* Ancho exacto de A4 */
-  min-height: 297mm; /* Alto mínimo de A4 */
-  margin: 0; /* Centrado horizontal */
-  background: #fff; /* Asegura fondo blanco */
-  box-sizing: border-box;
-  padding: 15mm; /* Aire interior para que el borde no se corte */
-  border: none; /* Borde visible en PDF */
-  /* border-radius: 6px; Opcional: esquinas suaves */
-}
-
 @media screen and (max-width: 768px) {
   #sheet-card {
     width: 100%;
-    min-height: auto;
+    max-width: 100%;
+
     padding: 16px;
     border: 1px solid var(--line);
   }
