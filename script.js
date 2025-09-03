@@ -130,10 +130,10 @@ document.addEventListener("DOMContentLoaded", () => {
       "Presupuesto-" + document.querySelector("#seq").textContent + ".pdf";
 
     const opt = {
-      margin: 10,
+      margin: 0,
       filename: fileName,
       image: { type: "jpeg", quality: 0.98 },
-      html2canvas: { scale: 2 },
+      html2canvas: { scale: 2, scrollX: 0, scrollY: 0 },
       jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
     };
 

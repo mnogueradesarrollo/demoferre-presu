@@ -364,6 +364,26 @@ table.items input {
   }
 }
 
+#sheet-card {
+  width: 210mm; /* Ancho exacto de A4 */
+  min-height: 297mm; /* Alto mínimo de A4 */
+  margin: 0 auto; /* Centrado horizontal */
+  background: #fff; /* Asegura fondo blanco */
+  box-sizing: border-box;
+  padding: 15mm; /* Aire interior para que el borde no se corte */
+  border: 1px solid #000; /* Borde visible en PDF */
+  border-radius: 6px; /* Opcional: esquinas suaves */
+}
+
+@media screen and (max-width: 768px) {
+  #sheet-card {
+    width: 100%;
+    min-height: auto;
+    padding: 16px;
+    border: 1px solid var(--line);
+  }
+}
+
 /* -------- Responsivo -------- */
 @media (max-width: 768px) {
   .topbar {
