@@ -157,13 +157,13 @@ table.items input {
   width: 80px;
 }
 .col-unit {
-  width: 120px;
+  width: 80px;
 }
 .col-price {
-  width: 80px;
+  width: 90px;
 } /* antes 120 / 90 */
 .col-sub {
-  width: 100px;
+  width: 110px;
   text-align: right;
 } /* antes 150 / 110 */
 .col-act {
@@ -219,6 +219,16 @@ table.items input {
   color: var(--muted);
 }
 
+/* --- Logo dentro de la hoja --- */
+.print-logo {
+  display: block; /* visible en pantalla y PDF */
+  margin: 0 0 6px 0;
+}
+.print-logo img {
+  height: 36px; /* ajusta el alto del logo impreso */
+  display: block;
+}
+
 /* -------- Tamaño de hoja y márgenes de impresión -------- */
 @page {
   size: A4;
@@ -267,16 +277,16 @@ table.items input {
     break-inside: avoid;
   }
   .sheet {
-    padding: 8px 0;
+    padding: 0;
     margin: 0;
     page-break-inside: avoid;
     break-inside: avoid;
   }
 
   .brandline {
-    margin: 0 0 6px;
+    margin: 6px 0 8px;
     padding: 0 0 6px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #ffffff;
     page-break-after: avoid;
     break-after: avoid;
   }
@@ -298,8 +308,8 @@ table.items input {
     margin: 0 0 8px;
   }
   .meta .box {
-    padding: 6px;
-    border: 1px solid #eee;
+    padding: 5px;
+    border: 1px dashed #eaeaea;
     border-radius: 8px;
     background: #fff;
   } /* bordes prolijos en impresión */
