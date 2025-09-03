@@ -380,7 +380,6 @@ table.items input {
     width: 100%;
     min-height: auto;
     padding: 16px;
-    border: 1px solid var(--line);
   }
 }
 
