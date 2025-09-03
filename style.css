@@ -371,8 +371,8 @@ table.items input {
   background: #fff; /* Asegura fondo blanco */
   box-sizing: border-box;
   padding: 15mm; /* Aire interior para que el borde no se corte */
-  border: 1px solid #000; /* Borde visible en PDF */
-  border-radius: 6px; /* Opcional: esquinas suaves */
+  border: none; /* Borde visible en PDF */
+  /* border-radius: 6px; Opcional: esquinas suaves */
 }
 
 @media screen and (max-width: 768px) {
@@ -380,6 +380,7 @@ table.items input {
     width: 100%;
     min-height: auto;
     padding: 16px;
+    border: 1px solid var(--line);
   }
 }
 
