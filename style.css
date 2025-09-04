@@ -78,18 +78,15 @@ button.ghost {
   padding-bottom: 18px;
   margin-bottom: 18px;
 }
-
 .brand img {
   margin: 0;
   height: 36px;
   display: block;
 }
-
 .brand .brand-logo {
   height: 36px;
   display: block;
-}
-
+} /* opcional */
 .brand small {
   color: var(--muted);
   display: block;
@@ -115,7 +112,7 @@ button.ghost {
   font-size: 12px;
 }
 
-/* Inputs un poco más “finos” */
+/* Inputs */
 .meta {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -160,7 +157,7 @@ table.items input {
   border-radius: 8px;
 }
 
-/* >>> Ajuste de anchos: más espacio para Descripción */
+/* >>> Ajuste de anchos */
 .col-qty {
   width: 80px;
 }
@@ -169,11 +166,11 @@ table.items input {
 }
 .col-price {
   width: 90px;
-} /* antes 120 / 90 */
+}
 .col-sub {
   width: 110px;
   text-align: right;
-} /* antes 150 / 110 */
+}
 .col-act {
   width: 40px;
 }
@@ -201,7 +198,7 @@ table.items input {
   border-top: 1px solid var(--line);
 }
 
-/* Logo */
+/* Logo en topbar */
 .brand-mini {
   display: flex;
   align-items: center;
@@ -227,20 +224,10 @@ table.items input {
   color: var(--muted);
 }
 
-/* --- Logo dentro de la hoja --- */
-.print-logo {
-  display: block; /* visible en pantalla y PDF */
-  margin: 0 0 6px 0;
-}
-.print-logo img {
-  height: 36px; /* ajusta el alto del logo impreso */
-  display: block;
-}
-
 /* -------- Tamaño de hoja y márgenes de impresión -------- */
 @page {
   size: A4;
-  margin: 14mm 16mm; /* laterales más amplios */
+  margin: 14mm 16mm;
 }
 
 /* -------- Print -------- */
@@ -261,29 +248,24 @@ table.items input {
   .actions {
     display: none !important;
   }
-
-  /* Dejo visible el logo arriba y lo escalo un poco para PDF */
   .topbar {
     display: none !important;
   }
-  .logo-placeholder {
-    width: 150px;
-    height: 60px;
-  }
 
   #sheet-card {
-    width: auto; /* Ancho exacto de A4 */
-    max-width: 190mm; /* ancho cómodo dentro de A4 con márgenes */
-    margin: 0 auto !important; /* Centrado horizontal */
-    padding: 10mm; /* Aire interior para que el borde no se corte */
-    min-height: auto !important; /* Alto mínimo de A4 */
-    border: 1px solid #aaa5; /* Borde visible en PDF */
+    width: auto;
+    max-width: 190mm;
+    margin: 0 auto !important;
+    padding: 10mm;
+    min-height: auto !important;
+    border: 1px solid #aaa5;
     border-radius: 6px;
-    background: #fff !important; /* Asegura fondo blanco */
+    background: #fff !important;
     box-sizing: border-box;
     page-break-inside: avoid;
     break-inside: avoid;
   }
+
   .card {
     border: none;
     box-shadow: none;
@@ -308,12 +290,10 @@ table.items input {
     page-break-after: avoid;
     break-after: avoid;
   }
-
   .brand small {
     font-size: 11px;
     line-height: 1.2;
   }
-
   .badge .num {
     font-size: 16px;
   }
@@ -327,7 +307,7 @@ table.items input {
     border: 1px dashed #eaeaea;
     border-radius: 8px;
     background: #fff;
-  } /* bordes prolijos en impresión */
+  }
   .meta label {
     font-size: 11px;
     margin: 0 0 2px;
@@ -351,43 +331,30 @@ table.items input {
     padding: 4px;
   }
 
-  /* ==== Alineación de precios SOLO en impresión ==== */
-
-  /* Mantener anchos de las columnas de precios en print */
+  /* Alineación de precios en impresión */
   .col-price {
     width: 90px !important;
-  } /* P. Unitario */
+  }
   .col-sub {
     width: 110px !important;
-  } /* Total producto */
-
-  /* Encabezados alineados a la derecha */
+  }
   table.items thead th:nth-child(4),
   table.items thead th:nth-child(5) {
     text-align: right !important;
     padding-right: 10px;
   }
-
-  /* Celdas de precios alineadas a la derecha y centradas verticalmente */
   table.items tbody td:nth-child(4),
   table.items tbody td:nth-child(5) {
     text-align: right !important;
     vertical-align: middle;
-    padding-right: 10px; /* pequeño respiro al borde */
-    font-variant-numeric: tabular-nums; /* números con ancho uniforme */
+    padding-right: 10px;
+    font-variant-numeric: tabular-nums;
   }
-
-  /* Input del “P. Unitario” (columna 4) alineado a la derecha */
   table.items tbody td:nth-child(4) input {
     text-align: right !important;
     padding-right: 8px;
     box-sizing: border-box;
     width: 100%;
-  }
-
-  /* El total por producto ya es texto; reforzamos el estilo */
-  table.items tbody td:nth-child(5) {
-    font-weight: 600;
   }
 
   .totals {
@@ -399,20 +366,6 @@ table.items input {
     font-weight: 700;
   }
 
-  /* Pie completamente blanco en PDF */
-  /* .footer {
-    border-top: 1px solid #ccc;
-    padding: 6px 0 0;
-    margin-top: 8px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    background: #fff !important; /* ← fuerzo blanco 
-    page-break-inside: avoid;
-    break-inside: avoid;
-  } */
-
   .footer {
     margin-top: 8px;
     padding: 6px 0 0;
@@ -420,7 +373,7 @@ table.items input {
     page-break-inside: avoid;
     break-inside: avoid;
   }
-  /* Contenedores padres también en blanco para que no aparezcan “bloques” grisáceos */
+
   .wrap,
   .card,
   .sheet,
@@ -430,7 +383,6 @@ table.items input {
     border-color: #ddd !important;
   }
 
-  /* Evitar hoja extra por márgenes finales */
   .footer,
   .sheet,
   .card {
@@ -438,17 +390,15 @@ table.items input {
   }
 }
 
+/* -------- Responsivo -------- */
 @media screen and (max-width: 768px) {
   #sheet-card {
     width: 100%;
     max-width: 100%;
-
     padding: 16px;
     border: 1px solid var(--line);
   }
 }
-
-/* -------- Responsivo -------- */
 @media (max-width: 768px) {
   .topbar {
     flex-direction: column;
@@ -500,9 +450,6 @@ table.items input {
 @media (max-width: 480px) {
   body {
     font-size: 14px;
-  }
-  .brand h1 {
-    font-size: 20px;
   }
   .badge .num {
     font-size: 16px;

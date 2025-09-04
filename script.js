@@ -18,7 +18,6 @@ const firebaseConfig = {
   appId: "1:297562954448:web:16d309140f45b1b1409cd5",
 };
 
-// Inicializar Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
@@ -40,12 +39,13 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderBiz() {
     const logo = $("#biz-image");
     if (logo && biz.image) logo.src = biz.image;
-    $("#biz-name").textContent = biz.name;
+
     $("#biz-sub").textContent = biz.sub;
     $(
       "#biz-contact"
     ).innerHTML = `${biz.address}<br>${biz.phone}<br>${biz.email}`;
     $("#biz-footer").textContent = biz.footer;
+
     const seqValue =
       (biz.prefix ? biz.prefix + "-" : "") + String(biz.next).padStart(4, "0");
     $("#seq").textContent = seqValue;
@@ -65,13 +65,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function addRow(d = { qty: "", unit: "", desc: "", price: "" }) {
     const tr = document.createElement("tr");
-    tr.innerHTML = `<td><input type="number" value="${d.qty}"></td>
-    <td><input type="text" value="${d.unit}"></td>
-    <td><input type="text" value="${d.desc}"></td>
-    <td><input type="number" value="${d.price}"></td>
-    <td class="subtotal">—</td>
-    <td><button>✕</button></td>`;
+    tr.innerHTML = `
+      <td><input type="number" value="${d.qty}"></td>
+      <td><input type="text" value="${d.unit}"></td>
+      <td><input type="text" value="${d.desc}"></td>
+      <td><input type="number" value="${d.price}"></td>
+      <td class="subtotal">—</td>
+      <td><button>✕</button></td>`;
     tbody.appendChild(tr);
+
     tr.querySelectorAll("input").forEach((i) =>
       i.addEventListener("input", recalc)
     );
@@ -107,13 +109,12 @@ document.addEventListener("DOMContentLoaded", () => {
     tbody.innerHTML = "";
     for (let i = 0; i < 5; i++) addRow();
 
-    // 🔄 Obtener y actualizar número de presupuesto
     const numeroRef = ref(db, "presupuesto/numero_actual");
     try {
-      const snapshot = await runTransaction(numeroRef, (curr) => {
-        return (curr || 0) + 1;
-      });
-
+      const snapshot = await runTransaction(
+        numeroRef,
+        (curr) => (curr || 0) + 1
+      );
       const newNumber = snapshot.snapshot.val();
       biz.next = newNumber;
       renderBiz();
@@ -130,7 +131,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const element = document.querySelector("#sheet-card");
     const fileName =
       "Presupuesto-" + document.querySelector("#seq").textContent + ".pdf";
-
     const opt = {
       margin: 0,
       filename: fileName,
@@ -138,23 +138,19 @@ document.addEventListener("DOMContentLoaded", () => {
       html2canvas: { scale: 2, scrollX: 0, scrollY: 0 },
       jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
     };
-
     html2pdf().set(opt).from(element).save();
   });
 
   $("#btn-new").addEventListener("click", newDoc);
   $("#btn-add-row").addEventListener("click", () => addRow());
 
-  // 🔁 Al cargar la página: sincronizar con Firebase para obtener el último número
+  // Sincroniza al cargar
   (async () => {
     const numeroRef = ref(db, "presupuesto/numero_actual");
-
     try {
       const snapshot = await get(numeroRef);
-
       if (snapshot.exists()) {
-        const ultimo = snapshot.val();
-        biz.next = ultimo;
+        biz.next = snapshot.val();
       } else {
         await set(numeroRef, 1);
         biz.next = 1;
