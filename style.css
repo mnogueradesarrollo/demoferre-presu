@@ -83,10 +83,10 @@ button.ghost {
   height: 36px;
   display: block;
 }
-.brand h1 {
+/* .brand h1 {
   margin: 0;
   font-size: 26px;
-}
+} */
 .brand small {
   color: var(--muted);
   display: block;

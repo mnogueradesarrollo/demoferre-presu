@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const biz = {
     image: "./img/LOGO_LA_UNICA_BLANCO-removebg-preview.png",
-    name: "BULONERA La Única",
+    // name: "BULONERA La Única",
     sub: "Bulonería y Ferretería",
     address: "📍 Av. Zapiola 474, Paso del Rey",
     phone: "📞 11 2735 5082 (Whatsapp)",
