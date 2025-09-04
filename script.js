@@ -39,7 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   function renderBiz() {
-    $("#biz-name").textContent = biz.name;
+    $("biz-image").textContent = biz.image;
+    // $("#biz-name").textContent = biz.name;
     $("#biz-sub").textContent = biz.sub;
     $(
       "#biz-contact"
