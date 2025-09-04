@@ -303,20 +303,56 @@ table.items input {
     margin: 0 0 8px;
   }
   .meta .box {
-    padding: 5px;
+    /* padding: 5px;
+    border: 1px dashed #eaeaea;
+    border-radius: 8px;
+    background: #fff; */
+    padding: 6px;
     border: 1px dashed #eaeaea;
     border-radius: 8px;
     background: #fff;
   }
   .meta label {
+    /* font-size: 11px;
+    margin: 0 0 2px; */
+    display: block;
     font-size: 11px;
-    margin: 0 0 2px;
+    line-height: 1.1;
+    margin: 0 0 3px;
   }
   .meta input,
   .meta textarea {
-    font-size: 11px;
+    /* font-size: 11px;
     padding: 4px 6px;
-    line-height: 1.2;
+    line-height: 1.2; */
+    display: block;
+    width: 100%;
+    font-size: 12px;
+    /* Altura/padding pensados para que el texto quede centrado “a la vista” */
+    height: 24px;
+    line-height: 16px;
+    padding: 4px 6px;
+    border: 1px solid #d9d9df;
+    border-radius: 6px;
+    background: #fff !important;
+    box-shadow: none !important;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  /* El textarea no debe forzar altura fija */
+  .meta textarea {
+    height: auto;
+    min-height: 28px;
+    line-height: 1.25;
+    padding: 6px;
+  }
+
+  /* Por si algún navegador añade “zoom” de impresión */
+  input::placeholder,
+  textarea::placeholder {
+    color: #9aa0a6;
+    opacity: 1;
   }
 
   table.items thead th {
