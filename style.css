@@ -79,10 +79,17 @@ button.ghost {
   margin-bottom: 18px;
 }
 
-.brand h1 {
+.brand img {
   margin: 0;
-  font-size: 26px;
+  height: 36px;
+  display: block;
 }
+
+.brand .brand-logo {
+  height: 36px;
+  display: block;
+}
+
 .brand small {
   color: var(--muted);
   display: block;
@@ -301,10 +308,7 @@ table.items input {
     page-break-after: avoid;
     break-after: avoid;
   }
-  .brand h1 {
-    font-size: 18px;
-    margin: 0 0 2px;
-  }
+
   .brand small {
     font-size: 11px;
     line-height: 1.2;

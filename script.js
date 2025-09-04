@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const $$ = (s) => Array.from(document.querySelectorAll(s));
 
   const biz = {
-    name: "BULONERA La Única",
+    image: "./img/LOGO_LA_UNICA_BLANCO-removebg-preview.png",
     sub: "Bulonería y Ferretería",
     address: "📍 Av. Zapiola 474, Paso del Rey",
     phone: "📞 11 2735 5082 (Whatsapp)",
@@ -38,6 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   function renderBiz() {
+    const logo = $("#biz-image");
+    if (logo && biz.image) logo.src = biz.image;
     $("#biz-name").textContent = biz.name;
     $("#biz-sub").textContent = biz.sub;
     $(
