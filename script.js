@@ -27,8 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const $$ = (s) => Array.from(document.querySelectorAll(s));
 
   const biz = {
-    image: "./img/LOGO_LA_UNICA_BLANCO-removebg-preview.png",
-    // name: "BULONERA La Única",
+    name: "BULONERA La Única",
     sub: "Bulonería y Ferretería",
     address: "📍 Av. Zapiola 474, Paso del Rey",
     phone: "📞 11 2735 5082 (Whatsapp)",
@@ -39,8 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   function renderBiz() {
-    $("biz-image").textContent = biz.image;
-    // $("#biz-name").textContent = biz.name;
+    $("#biz-name").textContent = biz.name;
     $("#biz-sub").textContent = biz.sub;
     $(
       "#biz-contact"
@@ -144,31 +142,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   $("#btn-new").addEventListener("click", newDoc);
   $("#btn-add-row").addEventListener("click", () => addRow());
-
-  // CONFIGURACION DATOS DEL COMERCIO
-  // const dlg = $("#settings");
-  // $("#btn-settings").addEventListener("click", () => {
-  //   $("#s-name").value = biz.name;
-  //   $("#s-sub").value = biz.sub;
-  //   $("#s-contact").value = biz.contact;
-  //   $("#s-footer").value = biz.footer;
-  //   $("#s-prefix").value = biz.prefix;
-  //   $("#s-next").value = biz.next;
-  //   dlg.showModal();
-  // });
-
-  // $("#save-settings").addEventListener("click", (e) => {
-  //   e.preventDefault();
-  //   biz.name = $("#s-name").value;
-  //   biz.sub = $("#s-sub").value;
-  //   biz.contact = $("#s-contact").value;
-  //   biz.footer = $("#s-footer").value;
-  //   biz.prefix = $("#s-prefix").value;
-  //   biz.next = Number($("#s-next").value) || biz.next;
-  //   LS.set("ps_biz", biz);
-  //   renderBiz();
-  //   dlg.close();
-  // });
 
   // 🔁 Al cargar la página: sincronizar con Firebase para obtener el último número
   (async () => {
