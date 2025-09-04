@@ -145,10 +145,12 @@ table.items thead th {
   border-bottom: 1px solid var(--line);
   padding: 8px;
   text-align: left;
+  vertical-align: middle;
 }
 table.items tbody td {
   border-bottom: 1px dashed #eceef8;
   padding: 8px;
+  vertical-align: middle;
 }
 table.items input {
   width: 100%;
@@ -265,7 +267,6 @@ table.items input {
     page-break-inside: avoid;
     break-inside: avoid;
   }
-
   .card {
     border: none;
     box-shadow: none;
@@ -303,18 +304,12 @@ table.items input {
     margin: 0 0 8px;
   }
   .meta .box {
-    /* padding: 5px;
-    border: 1px dashed #eaeaea;
-    border-radius: 8px;
-    background: #fff; */
     padding: 6px;
     border: 1px dashed #eaeaea;
     border-radius: 8px;
     background: #fff;
   }
   .meta label {
-    /* font-size: 11px;
-    margin: 0 0 2px; */
     display: block;
     font-size: 11px;
     line-height: 1.1;
@@ -322,13 +317,9 @@ table.items input {
   }
   .meta input,
   .meta textarea {
-    /* font-size: 11px;
-    padding: 4px 6px;
-    line-height: 1.2; */
     display: block;
     width: 100%;
     font-size: 12px;
-    /* Altura/padding pensados para que el texto quede centrado “a la vista” */
     height: 24px;
     line-height: 16px;
     padding: 4px 6px;
@@ -339,58 +330,64 @@ table.items input {
     -webkit-appearance: none;
     appearance: none;
   }
-
-  /* El textarea no debe forzar altura fija */
   .meta textarea {
     height: auto;
     min-height: 28px;
     line-height: 1.25;
     padding: 6px;
   }
-
-  /* Por si algún navegador añade “zoom” de impresión */
   input::placeholder,
   textarea::placeholder {
     color: #9aa0a6;
     opacity: 1;
   }
 
+  /* ===== TABLA: fijamos layout y alineaciones para que no se mueva nada ===== */
+  table.items {
+    table-layout: fixed;
+    width: 100%;
+  }
   table.items thead th {
-    font-size: 11px;
-    padding: 4px 6px;
-  }
-  table.items tbody td {
-    padding: 4px 6px;
-  }
-  table.items input {
-    font-size: 12px;
-    padding: 4px;
+    vertical-align: middle;
   }
 
-  /* Alineación de precios en impresión */
-  .col-price {
-    width: 90px !important;
-  }
-  .col-sub {
-    width: 110px !important;
-  }
+  /* Encabezados de precios a la derecha */
   table.items thead th:nth-child(4),
   table.items thead th:nth-child(5) {
     text-align: right !important;
     padding-right: 10px;
   }
+
+  /* Celdas de precios alineadas a la derecha; números tabulares para prolijidad */
+  table.items tbody td {
+    vertical-align: middle;
+  }
   table.items tbody td:nth-child(4),
   table.items tbody td:nth-child(5) {
     text-align: right !important;
-    vertical-align: middle;
     padding-right: 10px;
     font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1, "lnum" 1;
+    white-space: nowrap;
   }
+
+  /* Input de P. Unitario ocupa toda la celda y alinea a la derecha */
   table.items tbody td:nth-child(4) input {
-    text-align: right !important;
-    padding-right: 8px;
-    box-sizing: border-box;
+    display: block;
     width: 100%;
+    text-align: right !important;
+    height: 22px;
+    line-height: 22px;
+    padding: 0 8px 0 4px;
+    box-sizing: border-box;
+  }
+
+  /* Anchos de columnas de precios en print (refuerzo) */
+  .col-price {
+    width: 90px !important;
+  }
+  .col-sub {
+    width: 110px !important;
   }
 
   .totals {
