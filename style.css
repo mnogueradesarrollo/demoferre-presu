@@ -86,7 +86,7 @@ button.ghost {
 .brand .brand-logo {
   height: 36px;
   display: block;
-} /* opcional */
+}
 .brand small {
   color: var(--muted);
   display: block;
@@ -159,7 +159,7 @@ table.items input {
   border-radius: 8px;
 }
 
-/* >>> Ajuste de anchos */
+/* >>> Ajuste de anchos (pantalla) */
 .col-qty {
   width: 80px;
 }
@@ -180,6 +180,7 @@ table.items input {
 .subtotal {
   text-align: right;
 }
+
 .totals {
   display: flex;
   justify-content: flex-end;
@@ -247,9 +248,7 @@ table.items input {
     margin: 0 !important;
     padding: 0 !important;
   }
-  .actions {
-    display: none !important;
-  }
+  .actions,
   .topbar {
     display: none !important;
   }
@@ -343,8 +342,6 @@ table.items input {
   }
 
   /* ===== Alineación precios – solo impresión ===== */
-
-  /* Forzamos layout fijo y mismas métricas */
   table.items {
     table-layout: fixed !important;
     border-collapse: collapse !important;
@@ -353,11 +350,11 @@ table.items input {
   table.items tbody td,
   table.items input {
     font-size: 12px !important;
-    line-height: 1.2 !important;
-    font-variant-numeric: tabular-nums; /* números con ancho uniforme */
+    line-height: 1.25 !important;
+    font-variant-numeric: tabular-nums;
   }
 
-  /* Anchos consistentes de las columnas 4 y 5 */
+  /* Anchos consistentes y alineación a la derecha (col 4 y 5) */
   table.items thead th:nth-child(4),
   table.items tbody td:nth-child(4) {
     width: 90px !important;
@@ -370,14 +367,12 @@ table.items input {
     text-align: right !important;
     vertical-align: middle !important;
   }
-
-  /* Encabezados de precios alineados a la derecha */
   table.items thead th:nth-child(4),
   table.items thead th:nth-child(5) {
     padding-right: 10px !important;
   }
 
-  /* Celda de P. Unitario con el input alineado “visualmente” */
+  /* Input del P. Unitario: ajuste fino para centrar visualmente */
   table.items tbody td:nth-child(4) {
     padding-right: 10px !important;
   }
@@ -386,28 +381,27 @@ table.items input {
     width: 100% !important;
     box-sizing: border-box !important;
     text-align: right !important;
-    height: 22px !important; /* altura controlada */
-    line-height: 22px !important; /* centra el texto verticalmente */
-    padding: 0 8px !important; /* mismo respiro que la columna 5 */
+    height: 22px !important;
+    line-height: 22px !important;
+    padding: 0 8px !important;
     margin: 0 !important;
     border: 1px solid transparent !important;
-    background: transparent !important; /* evita “salto” de color al imprimir */
-    -webkit-appearance: none;
-    appearance: none;
+    background: transparent !important;
+    transform: translateY(-1px); /* ← micro-ajuste vertical */
   }
 
-  /* Celda de Total producto (solo texto) */
+  /* Total producto (texto) */
   table.items tbody td:nth-child(5) {
     font-weight: 600 !important;
     padding-right: 10px !important;
   }
 
-  /* Por si el navegador baselinea distinto, centramos todo el body de la tabla */
+  /* Por si la impresora baselinea distinto: centrado vertical global en filas */
   table.items tbody td {
     vertical-align: middle !important;
   }
 
-  /* Anchos de columnas de precios en print (refuerzo) */
+  /* Refuerzo por clase */
   .col-price {
     width: 90px !important;
   }
@@ -431,7 +425,6 @@ table.items input {
     page-break-inside: avoid;
     break-inside: avoid;
   }
-
   .wrap,
   .card,
   .sheet,
@@ -440,7 +433,6 @@ table.items input {
     box-shadow: none !important;
     border-color: #ddd !important;
   }
-
   .footer,
   .sheet,
   .card {
