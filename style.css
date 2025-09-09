@@ -6,7 +6,7 @@
   --line: #e6e8f0;
 }
 
-/* -------- Base (pantalla) -------- */
+/* ------- Pantalla -------- */
 * {
   box-sizing: border-box;
 }
@@ -15,11 +15,10 @@ body {
   overflow-x: hidden;
   max-width: 100vw;
   margin: 0;
-  font-family: system-ui, Segoe UI, Roboto, Arial;
+  font-family: system-ui, "Segoe UI", Roboto, Arial;
   color: var(--ink);
-  background: #fff !important;
+  background: #fff;
 }
-
 .wrap,
 .card,
 .sheet {
@@ -31,7 +30,6 @@ body {
   margin: 28px auto;
   padding: 0 16px 80px;
 }
-
 .topbar {
   display: flex;
   justify-content: space-between;
@@ -43,7 +41,6 @@ body {
   gap: 8px;
   flex-wrap: wrap;
 }
-
 button {
   border: 1px solid var(--line);
   background: var(--paper);
@@ -57,10 +54,6 @@ button.primary {
   color: #fff;
   border-color: transparent;
 }
-button.ghost {
-  background: var(--paper);
-}
-
 .card {
   background: var(--paper);
   border: 1px solid var(--line);
@@ -83,16 +76,11 @@ button.ghost {
   height: 36px;
   display: block;
 }
-.brand .brand-logo {
-  height: 36px;
-  display: block;
-}
 .brand small {
   color: var(--muted);
   display: block;
   margin-bottom: 2px;
 }
-
 .badge {
   text-align: right;
 }
@@ -134,10 +122,12 @@ button.ghost {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02) inset;
 }
 
+/* Tabla */
 table.items {
   width: 100%;
   border-collapse: collapse;
   margin-top: 18px;
+  table-layout: fixed;
 }
 table.items thead th {
   font-size: 12px;
@@ -159,7 +149,7 @@ table.items input {
   border-radius: 8px;
 }
 
-/* >>> Ajuste de anchos (pantalla) */
+/* Anchos */
 .col-qty {
   width: 80px;
 }
@@ -176,7 +166,6 @@ table.items input {
 .col-act {
   width: 40px;
 }
-
 .subtotal {
   text-align: right;
 }
@@ -192,7 +181,6 @@ table.items input {
   font-size: 28px;
   font-weight: 700;
 }
-
 .footer {
   display: flex;
   justify-content: space-between;
@@ -201,7 +189,7 @@ table.items input {
   border-top: 1px solid var(--line);
 }
 
-/* Logo en topbar */
+/* Logo cabecera */
 .brand-mini {
   display: flex;
   align-items: center;
@@ -221,19 +209,13 @@ table.items input {
   object-fit: contain;
   display: block;
 }
-#biz-logo-fallback {
-  font-weight: bold;
-  font-size: 14px;
-  color: var(--muted);
-}
 
-/* -------- Tamaño de hoja y márgenes de impresión -------- */
+/* ------- Impresión -------- */
 @page {
   size: A4;
   margin: 14mm 16mm;
 }
 
-/* -------- Print -------- */
 @media print {
   * {
     -webkit-print-color-adjust: exact;
@@ -258,7 +240,6 @@ table.items input {
     max-width: 190mm;
     margin: 0 auto !important;
     padding: 10mm;
-    min-height: auto !important;
     border: 1px solid #aaa5;
     border-radius: 6px;
     background: #fff !important;
@@ -273,8 +254,6 @@ table.items input {
     min-height: auto !important;
     height: auto !important;
     margin: 0;
-    page-break-inside: avoid;
-    break-inside: avoid;
   }
   .sheet {
     padding: 0;
@@ -286,7 +265,7 @@ table.items input {
   .brandline {
     margin: 6px 0 8px;
     padding: 0 0 6px;
-    border-bottom: 1px solid #ffffff;
+    border-bottom: 1px solid #fff;
     page-break-after: avoid;
     break-after: avoid;
   }
@@ -298,6 +277,7 @@ table.items input {
     font-size: 16px;
   }
 
+  /* Inputs compactos y centrados “a la vista” */
   .meta {
     gap: 6px;
     margin: 0 0 8px;
@@ -341,7 +321,7 @@ table.items input {
     opacity: 1;
   }
 
-  /* ===== Alineación precios – solo impresión ===== */
+  /* ——— Alineación de las columnas numéricas ——— */
   table.items {
     table-layout: fixed !important;
     border-collapse: collapse !important;
@@ -354,59 +334,38 @@ table.items input {
     font-variant-numeric: tabular-nums;
   }
 
-  /* Anchos consistentes y alineación a la derecha (col 4 y 5) */
-  table.items thead th:nth-child(4),
-  table.items tbody td:nth-child(4) {
-    width: 90px !important;
-    text-align: right !important;
-    vertical-align: middle !important;
-  }
-  table.items thead th:nth-child(5),
-  table.items tbody td:nth-child(5) {
-    width: 110px !important;
-    text-align: right !important;
-    vertical-align: middle !important;
-  }
+  /* Encabezados de precios a la derecha */
   table.items thead th:nth-child(4),
   table.items thead th:nth-child(5) {
+    text-align: right !important;
     padding-right: 10px !important;
   }
 
-  /* Input del P. Unitario: ajuste fino para centrar visualmente */
+  /* Columna 4: input a la derecha y micro-ajuste vertical */
   table.items tbody td:nth-child(4) {
+    text-align: right !important;
+    vertical-align: middle !important;
     padding-right: 10px !important;
   }
   table.items tbody td:nth-child(4) input {
-    display: block !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
     text-align: right !important;
+    width: 100% !important;
+    padding: 0 8px !important;
     height: 22px !important;
     line-height: 22px !important;
-    padding: 0 8px !important;
-    margin: 0 !important;
     border: 1px solid transparent !important;
     background: transparent !important;
-    transform: translateY(-1px); /* ← micro-ajuste vertical */
+    box-sizing: border-box !important;
+    position: relative;
+    top: 1px; /* <- corrige el “salto” en impresión */
   }
 
-  /* Total producto (texto) */
+  /* Columna 5: total a la derecha */
   table.items tbody td:nth-child(5) {
-    font-weight: 600 !important;
-    padding-right: 10px !important;
-  }
-
-  /* Por si la impresora baselinea distinto: centrado vertical global en filas */
-  table.items tbody td {
+    text-align: right !important;
     vertical-align: middle !important;
-  }
-
-  /* Refuerzo por clase */
-  .col-price {
-    width: 90px !important;
-  }
-  .col-sub {
-    width: 110px !important;
+    padding-right: 10px !important;
+    font-weight: 600 !important;
   }
 
   .totals {
@@ -440,7 +399,7 @@ table.items input {
   }
 }
 
-/* -------- Responsivo -------- */
+/* ------- Responsivo -------- */
 @media screen and (max-width: 768px) {
   #sheet-card {
     width: 100%;
@@ -498,9 +457,6 @@ table.items input {
   }
 }
 @media (max-width: 480px) {
-  body {
-    font-size: 14px;
-  }
   .badge .num {
     font-size: 16px;
   }
