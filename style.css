@@ -478,3 +478,67 @@ table.items tbody td {
     padding: 8px 12px;
   }
 }
+
+/* ===== FIX de alineación solo para IMPRESIÓN ===== */
+@media print {
+  /* Forzar layout estable de la tabla y mismas métricas */
+  table.items {
+    table-layout: fixed !important;
+    border-collapse: collapse !important;
+    width: 100% !important;
+  }
+  table.items thead th,
+  table.items tbody td {
+    vertical-align: middle !important;
+    line-height: 1.2 !important;
+    font-size: 12px !important;
+  }
+
+  /* Anchos y alineación de las columnas 4 (P. Unitario) y 5 (Total) */
+  table.items thead th:nth-child(4),
+  table.items tbody td:nth-child(4) {
+    width: 92px !important;
+    text-align: right !important;
+  }
+  table.items thead th:nth-child(5),
+  table.items tbody td:nth-child(5) {
+    width: 116px !important;
+    text-align: right !important;
+  }
+
+  /* Usamos flex dentro de las celdas de precio para centrar vertical y alinear a la derecha */
+  table.items tbody td:nth-child(4),
+  table.items tbody td:nth-child(5) {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 0 !important;
+    padding-right: 10px !important;
+  }
+
+  /* Input del precio: misma altura y baseline que el texto impreso */
+  table.items tbody td:nth-child(4) input {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 22px !important;
+    line-height: 22px !important; /* centra ópticamente el número */
+    text-align: right !important;
+    padding: 0 8px !important;
+    margin: 0 !important;
+    border: 1px solid transparent !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    -webkit-appearance: none;
+    appearance: none;
+    font-variant-numeric: tabular-nums; /* dígitos de ancho uniforme */
+    font-feature-settings: "tnum" 1;
+  }
+
+  /* Total (texto) con mismo “respiro” y peso */
+  table.items tbody td:nth-child(5) {
+    font-weight: 600 !important;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+  }
+}
