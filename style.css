@@ -167,7 +167,7 @@ table.items input {
   width: 40px;
 }
 .subtotal {
-  text-align: right;
+  text-align: center;
 }
 
 .totals {
@@ -236,14 +236,14 @@ table.items input {
   /* encabezados de precios a la derecha */
   table.items thead th:nth-child(4),
   table.items thead th:nth-child(5) {
-    text-align: right !important;
+    text-align: center !important;
     padding-right: 10px !important;
   }
 
   /* celdas de precios a la derecha */
   table.items tbody td:nth-child(4),
   table.items tbody td:nth-child(5) {
-    text-align: right !important;
+    text-align: center !important;
     padding-right: 10px !important;
     font-variant-numeric: tabular-nums; /* columnas bien alineadas */
   }
@@ -283,7 +283,7 @@ table.items input {
   }
   .col-sub {
     width: 120px !important;
-    text-align: right !important;
+    text-align: center !important;
   }
   .col-act {
     width: 42px !important;
@@ -292,7 +292,7 @@ table.items input {
 
 /* Alineación visual en pantalla (también ayuda en print) */
 table.items tbody td:nth-child(4) input {
-  text-align: right;
+  text-align: center;
 }
 table.items thead th,
 table.items tbody td {
