@@ -217,189 +217,76 @@ table.items input {
 }
 
 @media print {
-  * {
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-
-  body {
-    background: #fff;
-    margin: 0;
-    font-size: 13px;
-  }
-  .wrap {
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-  .actions,
-  .topbar {
-    display: none !important;
-  }
-
-  /* Hoja “A4” con borde suave centrada */
-  #sheet-card {
-    width: auto;
-    max-width: 190mm;
-    margin: 0 auto !important;
-    padding: 10mm;
-    border: 1px solid #aaa5;
-    border-radius: 6px;
-    background: #fff !important;
-    box-sizing: border-box;
-    page-break-inside: avoid;
-    break-inside: avoid;
-  }
-  .card {
-    border: none;
-    box-shadow: none;
-    margin: 0;
-  }
-  .sheet {
-    padding: 0;
-    margin: 0;
-  }
-
-  .brandline {
-    margin: 6px 0 8px;
-    padding: 0 0 6px;
-    border-bottom: 1px solid #ffffff;
-    page-break-after: avoid;
-    break-after: avoid;
-  }
-  .brand small {
-    font-size: 11px;
-    line-height: 1.2;
-  }
-  .badge .num {
-    font-size: 16px;
-  }
-
-  /* --- Formularios (cliente/observaciones) --- */
-  .meta {
-    gap: 6px;
-    margin: 0 0 8px;
-  }
-  .meta .box {
-    padding: 6px;
-    border: 1px dashed #eaeaea;
-    border-radius: 8px;
-    background: #fff;
-  }
-  .meta label {
-    display: block;
-    font-size: 11px;
-    line-height: 1.1;
-    margin: 0 0 3px;
-  }
-  .meta input,
-  .meta textarea {
-    display: block;
-    width: 100%;
-    font-size: 12px;
-    background: #fff !important;
-    box-shadow: none !important;
-    border: 1px solid #d9d9df;
-    border-radius: 6px;
-    -webkit-appearance: none;
-    appearance: none;
-  }
-  .meta input {
-    height: 24px;
-    line-height: 16px;
-    padding: 4px 6px;
-  }
-  .meta textarea {
-    min-height: 28px;
-    line-height: 1.25;
-    padding: 6px;
-  }
-
-  /* --- TABLA: mismas métricas y alineación perfecta --- */
+  /* layout estable para la tabla */
   table.items {
     table-layout: fixed !important;
     border-collapse: collapse !important;
-    width: 100%;
+    width: 100% !important;
   }
-  /* Misma altura/line-height/padding en th y td */
+
+  /* mismas métricas para encabezado y filas */
   table.items thead th,
   table.items tbody td {
     font-size: 12px !important;
-    height: 26px; /* altura homogénea */
-    line-height: 26px !important; /* centra el texto verticalmente */
-    padding: 0 6px !important; /* padding uniforme */
+    padding: 6px 8px !important;
     vertical-align: middle !important;
+    line-height: 18px !important; /* misma línea para todos */
   }
 
-  /* Encabezados de precio a la derecha */
+  /* encabezados de precios a la derecha */
   table.items thead th:nth-child(4),
   table.items thead th:nth-child(5) {
     text-align: right !important;
     padding-right: 10px !important;
   }
 
-  /* Columnas 4 (P. Unitario) y 5 (Total) — anchos consistentes */
-  table.items thead th:nth-child(4),
-  table.items tbody td:nth-child(4) {
-    width: 90px !important;
-    text-align: right !important;
-  }
-  table.items thead th:nth-child(5),
+  /* celdas de precios a la derecha */
+  table.items tbody td:nth-child(4),
   table.items tbody td:nth-child(5) {
-    width: 110px !important;
     text-align: right !important;
+    padding-right: 10px !important;
+    font-variant-numeric: tabular-nums; /* columnas bien alineadas */
   }
 
-  /* Input dentro de “P. Unitario” con mismas métricas que la celda */
+  /* input del P. Unitario: alto y centrado visual */
   table.items tbody td:nth-child(4) input {
     display: block !important;
     width: 100% !important;
-    box-sizing: border-box !important;
-    height: 26px !important;
-    line-height: 26px !important; /* centra texto del input */
+    height: 24px !important;
+    line-height: 24px !important;
     padding: 0 8px !important;
     text-align: right !important;
     border: 1px solid transparent !important;
     background: transparent !important;
-    margin: 0 !important;
+    box-sizing: border-box !important;
     -webkit-appearance: none;
     appearance: none;
-    font-variant-numeric: tabular-nums;
   }
 
-  /* Total producto con un poco de peso */
-  table.items tbody td:nth-child(5) {
-    font-weight: 600 !important;
-    padding-right: 10px !important;
+  /* inputs de las demás columnas con misma altura */
+  table.items tbody td input {
+    height: 24px !important;
+    line-height: 24px !important;
+    padding: 0 8px !important;
+    box-sizing: border-box !important;
   }
 
-  /* TOTAL */
-  .totals {
-    gap: 8px;
-    margin-top: 8px;
+  /* refuerzo: anchos coherentes de las columnas “estrechas” */
+  .col-qty {
+    width: 70px !important;
   }
-  .totals .grand {
-    font-size: 20px;
-    font-weight: 700;
+  .col-unit {
+    width: 70px !important;
   }
-
-  /* Pie */
-  .footer {
-    margin-top: 8px;
-    padding: 6px 0 0;
-    border-top: 1px solid #ddd !important;
-    page-break-inside: avoid;
-    break-inside: avoid;
-    background: #fff !important;
+  .col-price {
+    width: 110px !important;
   }
-
-  /* Todo blanco, sin sombras extras */
-  .wrap,
-  .card,
-  .sheet,
-  .footer {
-    background: #fff !important;
-    box-shadow: none !important;
-    border-color: #ddd !important;
+  .col-sub {
+    width: 120px !important;
+    text-align: right !important;
+  }
+  .col-act {
+    width: 42px !important;
   }
 }
 
@@ -476,69 +363,5 @@ table.items tbody td {
   .actions button {
     font-size: 14px;
     padding: 8px 12px;
-  }
-}
-
-/* ===== FIX de alineación solo para IMPRESIÓN ===== */
-@media print {
-  /* Forzar layout estable de la tabla y mismas métricas */
-  table.items {
-    table-layout: fixed !important;
-    border-collapse: collapse !important;
-    width: 100% !important;
-  }
-  table.items thead th,
-  table.items tbody td {
-    vertical-align: middle !important;
-    line-height: 1.2 !important;
-    font-size: 12px !important;
-  }
-
-  /* Anchos y alineación de las columnas 4 (P. Unitario) y 5 (Total) */
-  table.items thead th:nth-child(4),
-  table.items tbody td:nth-child(4) {
-    width: 92px !important;
-    text-align: right !important;
-  }
-  table.items thead th:nth-child(5),
-  table.items tbody td:nth-child(5) {
-    width: 116px !important;
-    text-align: right !important;
-  }
-
-  /* Usamos flex dentro de las celdas de precio para centrar vertical y alinear a la derecha */
-  table.items tbody td:nth-child(4),
-  table.items tbody td:nth-child(5) {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: flex-end !important;
-    gap: 0 !important;
-    padding-right: 10px !important;
-  }
-
-  /* Input del precio: misma altura y baseline que el texto impreso */
-  table.items tbody td:nth-child(4) input {
-    display: block !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    height: 22px !important;
-    line-height: 22px !important; /* centra ópticamente el número */
-    text-align: right !important;
-    padding: 0 8px !important;
-    margin: 0 !important;
-    border: 1px solid transparent !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    -webkit-appearance: none;
-    appearance: none;
-    font-variant-numeric: tabular-nums; /* dígitos de ancho uniforme */
-    font-feature-settings: "tnum" 1;
-  }
-
-  /* Total (texto) con mismo “respiro” y peso */
-  table.items tbody td:nth-child(5) {
-    font-weight: 600 !important;
-    font-variant-numeric: tabular-nums;
-    font-feature-settings: "tnum" 1;
   }
 }
